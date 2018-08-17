@@ -50,7 +50,7 @@
       * _footer.handlebars
   * xml/
   * package.json
-  * [readme](https://github.com/kb2232/TechInSchool)
+  * [readme](https://github.com/kb2232/TechInSchool/blob/master/readme.md)
   * server.js
 
 # Testing
