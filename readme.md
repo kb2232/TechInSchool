@@ -32,9 +32,22 @@
   * models/
     * attendanceSchema.js
   * public/
+    * css/
+      * style.css
+    * image/
   * routes/
+    * apiRoute.js
+    * authRoute.js
+    * clientRoute.js
   * test/
   * views/
+    * features/
+    * index/
+      * welcome.handlebars
+    * layouts/
+      * main.handlebars
+    * partials/
+      * _footer.handlebars
   * xml/
   * package.json
   * [readme](https://github.com/kb2232/TechInSchool)
