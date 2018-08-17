@@ -3,6 +3,23 @@
 
   - [mvp](https://github.com/kb2232/TechInSchool)
 
+# Packages
+  ```JSON
+  {
+    "body-parser": "^1.18.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^3.0.0",
+    "mocha-sql": "0.0.6",
+    "moment": "^2.22.2",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0"
+  }
+  ```
+
 # FILE STRUCTUE
   * config/
     * prod.js
@@ -12,4 +29,15 @@
   * helper/
     * auth.js
     * hbs.js
+  * models/
+    * attendanceSchema.js
+  * public/
+  * routes/
+  * test/
+  * views/
+  * xml/
+  * package.json
+  * [readme](https://github.com/kb2232/TechInSchool)
+  * server.js
 
+# Testing

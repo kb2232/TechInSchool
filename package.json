@@ -1,0 +1,33 @@
+{
+  "name": "attendance",
+  "version": "1.0.0",
+  "description": "this is an attendance software",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha-sql",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kb2232/TechInSchool.git"
+  },
+  "author": "kunle babatunde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kb2232/TechInSchool/issues"
+  },
+  "homepage": "https://github.com/kb2232/TechInSchool#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^3.0.0",
+    "mocha-sql": "0.0.6",
+    "moment": "^2.22.2",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0"
+  }
+}
