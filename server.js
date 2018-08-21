@@ -68,7 +68,7 @@ app.use(express.static(path.join(__dirname,'public')));
 ClientRoute(app);
 
 //dynamic porting
-var PORT = process.env.PORT;
+var PORT = process.env.PORT | 3000;
   app.listen(PORT,()=>{
     console.log(`Server listen at door:${PORT}`);
   });

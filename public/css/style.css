@@ -21,3 +21,31 @@ main {
   width: 200px;
   height: 200px;
 }
+
+/* Contact Form */
+#contact-form {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#sendEmail {
+  margin: 0 auto;
+  width: 20%;
+}
+
+h4 {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+}
+
+input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+textarea {
+  height: 200px;
+  margin-bottom: 20px;
+  width: 100%;
+}

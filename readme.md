@@ -45,6 +45,7 @@
     * index/
       * welcome.handlebars
     * layouts/
+      * contact.handlebars 
       * main.handlebars
     * partials/
       * _footer.handlebars
