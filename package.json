@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "this is an attendance software",
   "main": "server.js",
+  "engines": {
+    "node": "8.11.1",
+    "npm": "5.8.0"
+  },
   "scripts": {
     "test": "mocha-sql",
     "start": "node server.js"
