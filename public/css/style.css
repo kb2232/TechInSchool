@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.border {
+  border: 1px solid black;
+  border-style: dashed;
+}
+
+.center {
+  align-items: center;
+}
+
+.cards {
+  width: 200px;
+  height: 200px;
+}
