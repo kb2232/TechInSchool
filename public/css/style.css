@@ -26,10 +26,17 @@ main {
 #contact-form {
   border: 1px solid black;
   border-radius: 5px;
-  padding: 20px;
+  margin: 50px auto;
+  padding: 50px;
+}
+
+#contactHeader {
+  font-size: 1.25vw;
+  text-align: center;
 }
 
 #sendEmail {
+  display: block;
   margin: 0 auto;
   width: 20%;
 }
@@ -37,10 +44,11 @@ main {
 h4 {
   font-size: 18px;
   letter-spacing: 0.1em;
+  padding: 10px;
 }
 
 input {
-  margin-bottom: 20px;
+  margin: 20px;
   width: 100%;
 }
 
