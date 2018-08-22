@@ -1,4 +1,4 @@
-require('dotenv').config();
+const keys = require("../models/config/keys");
 
 module.exports = (app) => 
 {
@@ -13,15 +13,15 @@ module.exports = (app) =>
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL_USER, // generated ethereal user
-            pass: process.env.EMAIL_PASSWORD // generated ethereal password
+            user: keys.EMAIL_USER, // generated ethereal user
+            pass: keys.EMAIL_PASSWORD // generated ethereal password
         }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
         from: req.body.email, // sender address
-        to: process.env.EMAIL_USER, // list of receivers
+        to: keys.EMAIL_USER, // list of receivers
         subject: req.body.subject + ' from ' + req.body.name, // Subject line
         text: req.body.message, // plain text body
         //html: '<b>Hello world?</b>' // html body

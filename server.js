@@ -70,7 +70,7 @@ ClientRoute(app);
 ApiRoute(app);
 
 //dynamic porting
-var PORT = process.env.PORT;
+var PORT = process.env.PORT || keys.portnumber;
   app.listen(PORT,()=>{
     console.log(`Server listen at door:${PORT}`);
   });
