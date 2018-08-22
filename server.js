@@ -4,9 +4,10 @@ const express = require('express'),
   methodOveride = require('method-override'),
   exphps = require('express-handlebars'),
   cookieSession = require('cookie-session'), //enables cookie
-  ClientRoute = require('./routes/clientRoute'),
+  ClientRoute = require('./controllers/clientRoute'),
+  ApiRoute = require('./controllers/apiRoute'),
   passport = require('passport'),
-  keys = require('./config/keys');
+  keys = require('./models/config/keys');
 require('dotenv').config();
   
 const app = express();
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //pass app to routes below
 ClientRoute(app);
+ApiRoute(app);
 
 //dynamic porting
 var PORT = process.env.PORT;

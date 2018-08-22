@@ -20,27 +20,42 @@
   }
   ```
 
-# FILE STRUCTUE
-  * config/
-    * prod.js
-    * dev.js
-    * key.js
-    * passport.js
+# FILE STRUCTUE - MVP pattern
+  1. Model - A place to define data structures and methods to interact with your data store. The schema files will go in here for the model
+  2. VIews - A place to manage everything the end user sees on his or her screen. This is where all the handlebar files are placed.
+  3. Controllers -  A place to take user requests, bring data from the model and pass it back to the view. This is basically where all your routes go.
+
+  ```
+  database <------>Model <------>Controller ----> Views ----> Browser
+                                    ^                            |
+                                    |                            |
+                                    |                            |
+                                    |                            |
+                                    -----------------------------
+  ```
+
+  * Models/
+    * config/
+      * prod.js
+      * dev.js
+      * key.js
+      * passport.js
   * helper/
     * auth.js
     * hbs.js
-  * models/
-    * attendanceSchema.js
+  * database/
+    * attendance.sql
+    * attendanceSchema.sql
+  * test/
   * public/
     * css/
       * style.css
     * image/
-  * routes/
+  * Controllers/
     * apiRoute.js
     * authRoute.js
     * clientRoute.js
-  * test/
-  * views/
+  * Views/
     * features/
     * index/
       * welcome.handlebars
