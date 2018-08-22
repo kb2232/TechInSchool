@@ -5,6 +5,7 @@ const express = require('express'),
   exphps = require('express-handlebars'),
   cookieSession = require('cookie-session'), //enables cookie
   ClientRoute = require('./routes/clientRoute'),
+  APIRoute = require('./routes/apiRoute'),
   passport = require('passport'),
   keys = require('./config/keys');
 require('dotenv').config();
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //pass app to routes below
 ClientRoute(app);
+APIRoute(app);
 
 //dynamic porting
 var PORT = process.env.PORT | 3000;
