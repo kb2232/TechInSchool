@@ -77,7 +77,12 @@
       * name
       * school email (must be school email)
       * password (encrypted)
-      * The I.D of the classes they teach (unique)
+    * Student and Classes Info
+      * student id (refernce key)
+      * class id (reference key)
+    * Teachers and Class id
+      * teacher id (refernce key)
+      * class id (refernce key)
     * Classes
       * name of class
       * i.d of class
@@ -128,7 +133,7 @@
     - (4) student, teacher and parent login.
     - (2) Create and Take Quiz 
     - Extra: MVP file structure, temporary filenaming so everyone will know where to upload there information. Controlling MASTER BRANCH
-  * MICHEAL KIM (create your branch)
+  * MICHAEL KIM (create your branch)
     - (1) Take Attendance Multiple times
   * RONAK RAY(create your branch)
     - (3) Summary of each child per attendance and quiz result
