@@ -1,4 +1,4 @@
-const keys = require("../models/config/keys");
+const keys = require("../config/keys");
 
 module.exports = (app) => 
 {

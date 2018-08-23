@@ -7,7 +7,7 @@ const express = require('express'),
   ClientRoute = require('./controllers/clientRoute'),
   ApiRoute = require('./controllers/apiRoute'),
   passport = require('passport'),
-  keys = require('./models/config/keys');
+  keys = require('./config/keys');
 require('dotenv').config();
   
 const app = express();
