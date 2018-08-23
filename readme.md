@@ -37,7 +37,7 @@
     * prod.js
     * dev.js
     * key.js
-    * passport.js
+    * connect.js
     * ORM.js
   * Controllers/
     * apiRoute.js
