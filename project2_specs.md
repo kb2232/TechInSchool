@@ -1,4 +1,4 @@
-# The Story - First MVP -- Lot of work
+# The Story  -- Lot of work
   *  **Teaching facing**
   ```
     A teacher logs into the page with his school email ONLY. He has the ability to take attendance of his students at any time during the day. The teacher can then create a quiz of his style. Upon submitting the quiz, he should be able to give his students a code. The students go on the website, enter the code and take the timed quiz. 
