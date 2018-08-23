@@ -26,7 +26,7 @@
   3. Controllers -  A place to take user requests, bring data from the model and pass it back to the view. This is basically where all your routes go.
 
   ```
-  database <------>Model <------>Controller ----> Views ----> Browser
+  database <---ORM<--->Model <--->Controller ----> Views ----> Browser
                                     ^                            |
                                     |                            |
                                     |                            |
@@ -35,11 +35,13 @@
   ```
 
   * Models/
-    * config/
-      * prod.js
-      * dev.js
-      * key.js
-      * passport.js
+    * connection.js
+  * config/
+    * prod.js
+    * dev.js
+    * key.js
+    * passport.js
+    * orm.js
   * helper/
     * auth.js
     * hbs.js
