@@ -50,7 +50,7 @@
   ```
   2. Do NOT build it on your local machine only. Directly - connect it heroku using JawsDB package. Set up all the keys in heroku and make sure all is working before creating on local machine.
 
-  *  **Minimum Information required**
+  * Minimum Information required
     * Student table must have :
       * first and last name, 
       * email address must be school's email NOT personal, Email should be unique.
