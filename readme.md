@@ -33,39 +33,50 @@
                                     |                            |
                                     -----------------------------
   ```
-
-  * Models/
-    * connection.js
   * config/
     * prod.js
     * dev.js
     * key.js
     * passport.js
-    * orm.js
-  * helper/
-    * auth.js
-    * hbs.js
-  * database/
-    * attendance.sql
-    * attendanceSchema.sql
-  * test/
-  * public/
-    * css/
-      * style.css
-    * image/
+    * ORM.js
   * Controllers/
     * apiRoute.js
     * authRoute.js
     * clientRoute.js
+  * database/
+    * attendance.sql
+    * attendanceSchema.sql
+  * helper/
+    * auth.js
+    * hbs.js
+  * Models/
+    * connection.js
+  * public/
+    * css/
+      * style.css
+    * image/
+    * javascript/
+  * test/
   * Views/
     * features/
+      * attendanceReport.handlebars
     * index/
       * welcome.handlebars
+      * contact.handlebars
     * layouts/
       * main.handlebars
+    * parent stories
+      * mychild.handlebars
     * partials/
       * _footer.handlebars
-  * xml/
+      * _navbar.handlebars
+      * _breadcrumb.handlebars
+    * student_stories
+      * mypage.handlebars
+    * teacher_stories
+      * attendance.handlebars
+      * quizzes.handlebars
+  * xml/...
   * package.json
   * [readme](https://github.com/kb2232/TechInSchool/blob/master/readme.md)
   * server.js
