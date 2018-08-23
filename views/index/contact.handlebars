@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-
 <body>
-  <div class="container" id="contact-form">
-    {{!-- Form --}}
-    <form method="POST" action="send">
-      <h1> {{message}} </h1>
-      <p id="contactHeader"> Feel free to send us a message! :) </p>
-      <div class="row">
-        <h4> Name : </h4>
-        <input type="text" id="nameField" name="name">
-        <h4> Email : </h4>
-        <input type="email" id="emailField" name="email">
-        <h4> Subject : </h4>
-        <input type="text" id="subjectField" name="subject">
-        <h4> Message : </h4>
-        <textarea id="messageField" name="message"> </textarea>
-        <button class="btn btn-success" id="sendEmail" type="submit"> SEND </button>
-      </div>
-    </form>
-  </div>
+    <main>
+        <div class="container" id="contact-form">
+            {{!-- Form --}}
+            <form method="POST" action="send">
+                <p id="contactHeader"> Feel free to send us a message! :) </p>
+                <h3> {{message}} </h3>
+                <div class="row">
+                    <h4> Name : </h4>
+                    <input type="text" id="nameField" name="name">
+                    <h4> Email : </h4>
+                    <input type="email" id="emailField" name="email">
+                    <h4> Subject : </h4>
+                    <input type="text" id="subjectField" name="subject">
+                    <h4> Message : </h4>
+                    <textarea id="messageField" name="message"> </textarea>
+                    <button class="btn btn-success" id="sendEmail" type="submit"> SEND </button>
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
-
-</html>
