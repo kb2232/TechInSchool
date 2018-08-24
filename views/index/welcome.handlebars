@@ -9,6 +9,13 @@
 </head>
 
 <body>
+    {{#if user}}
+    <div class="card">
+      <h3>Welcome: {{user.firstname}}</h3><br>
+      Hi Yesenia - I am a user: How should this page look?
+
+    </div>
+    {{else}}
     <div class="row">
       <div class="col s12 center">
         <div class="carousel">
@@ -59,6 +66,7 @@
         </div>
       </div>
     </div>
+    {{/if}}
 </body>
 
 </html>

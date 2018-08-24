@@ -1,10 +1,13 @@
  <nav class="round black">
     <div class="nav-wrapper center">
       <div class="row">
-        <div class="col s12">
-        <a href="/" class="breadcrumb">Home</a>
-        <a href="#!" class="breadcrumb">Sign up</a>
-        <a href="#!" class="breadcrumb">Login</a>
+        <div class="col s12 breadcrumb">
+          {{#if user}}
+        <a href="/"><span class="fa fa-home"></span>Home</a>
+        {{else}}
+        <a href="/login" ><span class="fa fa-user"></span> Local Login</a>
+        <a href="/signup"><span class="fa fa-sign-in"></span> Local Signup</a>
+        {{/if}}
       </div>
       </div>
     </div>

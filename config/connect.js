@@ -14,6 +14,10 @@ con.connect( err =>{
 	con.query('select @@hostname', (err, result) => {
 		if (err) throw err;
 		console.log(result);
+	});
+	con.query(`USE ${keys.DB_NAME}`, (err, result) => {
+		if (err) throw err;
+		console.log(result);
   });
 });
 
