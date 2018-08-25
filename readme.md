@@ -6,17 +6,24 @@
 # Packages
   ```JSON
   {
+    "assert": "^1.4.1",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "method-override": "^3.0.0",
     "mocha-sql": "0.0.6",
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
+    "nodemailer": "^4.6.8",
     "nodemon": "^1.18.3",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
   ```
 
@@ -35,17 +42,17 @@
   ```
   * config/
     * prod.js
-    * dev.js
+    * dev.js - we do not commit
     * key.js
     * connect.js
     * ORM.js
+    * passport.js
   * Controllers/
     * apiRoute.js
     * authRoute.js
     * clientRoute.js
   * database/
     * attendance.sql
-    * attendanceSchema.sql
   * helper/
     * auth.js
     * hbs.js
@@ -76,9 +83,14 @@
     * teacher_stories
       * attendance.handlebars
       * quizzes.handlebars
+    * users
+      * login
+      * profile
+      * signup
   * xml/...
   * package.json
   * [readme](https://github.com/kb2232/TechInSchool/blob/master/readme.md)
   * server.js
+  * project2_specs.md
 
 # Testing

@@ -1,41 +1,39 @@
 const express = require('express'),
   path = require('path'),
+  session  = require('express-session'),
+  cookieParser = require('cookie-parser'),
   bdParser = require('body-parser'),
-  methodOveride = require('method-override'),
   exphps = require('express-handlebars'),
-  cookieSession = require('cookie-session'), //enables cookie
   ClientRoute = require('./controllers/clientRoute'),
   ApiRoute = require('./controllers/apiRoute'),
-  passport = require('passport'),
+  AuthRoute = require('./controllers/authRoute'),
   keys = require('./config/keys');
 require('dotenv').config();
-  
-const app = express();
+const app = express(),
+passport = require('passport'),
+flash    = require('connect-flash');
+require('./config/passport')(passport); // pass passport for configuration
 
+app.use(cookieParser()); // read cookies (needed for auth)
 //body parser middleware - settings
 app.use(
-  bdParser.urlencoded({extended: false})
+  bdParser.urlencoded({extended: true})
 );
 app.use(bdParser.json());
-
-//method override
-app.use(methodOveride('_method'));
 
 //cookie middleware
 //used to set parameters for cookie
 app.use(
-  cookieSession({
-    //maximum time cookie stays in browser in ms - 30 days
-    maxAge: 30*24*60*60*1000,
-    //keys is used to encrpyt the cookie
-    keys:[keys.cookieKey]
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret:keys.cookieSecret
   })
 );
-//tell passport to make use of cookies
-app.use(passport.initialize());
-//the above starts serializeUser
-app.use(passport.session());
-//the above is used to preprocess the token sent from the browser
+app.use(passport.initialize());//the above starts serializeUser
+app.use(passport.session()); //used to preprocess the token sent from the browser
+app.use(flash());// use connect-flash for flash messages stored in session
+
 
 //settings for middleware
 /*
@@ -53,12 +51,14 @@ Assigns setting name to value
 app.set('view engine','handlebars');
 
 
-//global variables to have access to user
-//this allows us to use
-//{{# if user}} ...
-app.use((req,res,next)=>{
+// Global variables
+app.use((req, res, next)=>{
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  //if we logged in we have access to user
   res.locals.user = req.user || null;
-  next()
+  next();
 });
 
 
@@ -68,6 +68,7 @@ app.use(express.static(path.join(__dirname,'public')));
 //pass app to routes below
 ClientRoute(app);
 ApiRoute(app);
+AuthRoute(app, passport);
 
 //dynamic porting
 var PORT = process.env.PORT || keys.portnumber;

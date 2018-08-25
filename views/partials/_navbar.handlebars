@@ -6,30 +6,40 @@
         <i class="fa fa-bars"></i>
       </a>
       <!-- right nav-->
+      {{#if user}}
+     
       <ul class="right hide-on-small-only">
         <li>
-          <a href="#">
-            <i class="fas fa-sign-in-alt" aria-hidden="true">SignUp</i>
-          </a>
+           <p>Welcome! {{user.firstname}} {{user.lastname}}</p>
         </li>
         <li>
-          <a href="#">
-            <i class="fa fa-sign-in" aria-hidden="true">Login</i>
-          </a>
+          <a href="/logout" class="fa fa-sign-out">Sign Out</a>
         </li>
       </ul>
+      {{else}}
+      <ul class="right hide-on-small-only">
+        <li>
+          <a href="/login"><span class="fa fa-user"></span> Local Login</a>
+        </li>
+        <li>
+          <a href="/signup"><span class="fa fa-sign-in"></span> Local SignUp</a>
+        </li>
+      </ul>
+      {{/if}}
       <!-- side nav-->
       <ul class="side-nav" id="main-menu">
+        {{#if user}}
         <li>
-          <a class="btn red darken-1" href="#">
-            <i class="fas fa-sign-in-alt" aria-hidden="true">SignUp</i>
-          </a>
+          <a href="/logout" class="btn red darken-1">Sign Out</a>
+        </li>
+        {{else}}
+        <li>
+          <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
         </li>
         <li>
-          <a class="btn red darken-1" href="#">
-            <i class="fa fa-sign-in" aria-hidden="true">Login</i>
-          </a>
+          <a href="/signup" class="btn btn-default"><span class="fa fa-sign-in"></span> Local SignUp</a>
         </li>
+        {{/if}}
       </ul>
     </div>
   </div>
