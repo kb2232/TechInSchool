@@ -19,4 +19,8 @@ module.exports = app => {
 		});
 	});
 
+	app.get('/attendance', function(req, res){
+		res.render('teacher_stories/attendance');
+	});
+
 };
