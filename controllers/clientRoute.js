@@ -19,6 +19,9 @@ module.exports = app => {
 		});
 	});
 
+	// Most likely will need confirmation that a teacher is logged in,
+	// Currently put as a route from the home page.
+	// TODO: Remove later, add as a proper route when teacher is logged in.
 	app.get('/attendance', function(req, res){
 		res.render('teacher_stories/attendance');
 	});

@@ -70,3 +70,35 @@ textarea {
   padding: 15px;
   width: 80%;
 }
+
+/* Take Attendance Page */
+#studentList {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#classTitle {
+  text-align: center;
+}
+
+.markAttendance {
+  float: right;
+  height: 50px;
+  width: 50px;
+}
+
+.studentImage {
+  float:left;
+  max-height: 150px;
+  padding-right: 20px;
+}
+
+.viewRecord {
+  float: right;
+}
+
+#submitAttendance {
+  display: block;
+  margin: 20px auto;
+}

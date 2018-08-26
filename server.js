@@ -7,6 +7,7 @@ const express = require('express'),
   ClientRoute = require('./controllers/clientRoute'),
   ApiRoute = require('./controllers/apiRoute'),
   AuthRoute = require('./controllers/authRoute'),
+  AttendanceController = require('./controllers/attendanceController')
   keys = require('./config/keys');
 require('dotenv').config();
 const app = express(),
@@ -69,6 +70,7 @@ app.use(express.static(path.join(__dirname,'public')));
 ClientRoute(app);
 ApiRoute(app);
 AuthRoute(app, passport);
+app.use(AttendanceController);
 
 //dynamic porting
 var PORT = process.env.PORT || keys.portnumber;

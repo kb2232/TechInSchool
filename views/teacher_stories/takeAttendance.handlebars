@@ -1,0 +1,31 @@
+<body>
+  <div class="container">
+    <ul id="studentList">
+      <h5 id="classTitle"> Class Name and Time Here </h5>
+      {{#each students}}
+        <li style="clear: both; padding: 30px 0px;">
+          <img src={{linktophoto}} class="studentImage">
+
+          <!-- Buttons will have 4 different colors to define attendance
+            TODO: Colors are subject to change.
+                On click, the button will branch out into a small little menu to mark the attendance.
+                FOR REFERENCE: https://www.youtube.com/watch?v=AIdslaUj9wg&t=923s
+            ABSENT: RED #ffb3b3
+            PRESENT: GREEN #90EE90
+            LATE: ORANGE #FFD700
+            EXCUSED: BLUE #87CEEB
+          -->
+          <button class="btn waves-effect waves-light markAttendance">  </button>
+
+          <!-- Include this for each student?? -->
+          <!-- <a class="viewRecord" href="#"> View Attendance Record </a> -->
+          <p> {{firstname}} {{lastname}} </p>
+          <p> {{address}} </p>
+          <p> {{phonenumber}} </p>
+
+        </li>
+      {{/each}}
+      <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
+    </ul>
+  </div>
+</body>
