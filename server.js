@@ -71,7 +71,7 @@ ApiRoute(app);
 AuthRoute(app, passport);
 
 //dynamic porting
-var PORT = process.env.PORT || keys.portnumber;
+var PORT = process.env.Port || keys.Port;
 app.listen(PORT,()=>{
   console.log(`Server listen at door:${PORT}`);
 });
