@@ -12,10 +12,9 @@
 	<div class="page-header text-center">
 		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
 	</div>
-
 	<div class="row">
 		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
+		<div class="col s12">
 			<div class="card">
 				<h3><span class="fa fa-user"></span> Local</h3>
 
@@ -24,12 +23,15 @@
 						<strong>Full Name</strong>:{{user.firstname}} {{user.lastname}}<br>
 						<strong>Password</strong>: {{user.password}}
 					</p>
-
 			</div>
 		</div>
-
 	</div>
-
+	<div class="row">
+		<div class="col s8 m6">
+			<h4>Take Attendance</h4>
+			<a class="btn-floating btn-large waves-effect waves-light red" href="/attendance"><i class="material-icons">+</i></a>
+		</div>
+	</div>
 </div>
 </body>
 </html>

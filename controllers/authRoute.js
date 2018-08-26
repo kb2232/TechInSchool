@@ -84,7 +84,6 @@ module.exports = function(app, passport) {
 					errors.push({ text: 'Password must be at least 5 characters' });
 				}
 				if (errors.length > 0) {
-					console.log('errors=', errors);
 					res.render('users/createPass', {
 						errors: errors[0].text,
 						email: req.body.email,
