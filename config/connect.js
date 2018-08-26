@@ -17,7 +17,7 @@ con.connect( err =>{
 	});
 	con.query(`USE ${keys.DB_NAME}`, (err, result) => {
 		if (err) throw err;
-		console.log(result);
+		return result;
   });
 });
 
