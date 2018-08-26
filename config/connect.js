@@ -2,10 +2,10 @@ const sql = require("mysql")
  keys = require("./keys");
 /////////CONNECTON///////////////////////////////////////
 const con = sql.createConnection({
-	host: keys.DB_HOST,
-	user: keys.DB_USER,
-	password: keys.DB_PASS,
-  database: keys.DB_NAME,
+	host: keys.Host,
+	user: keys.Username,
+	password: keys.Password,
+  database: keys.Database,
 });
 
 con.connect( err =>{
@@ -15,7 +15,7 @@ con.connect( err =>{
 		if (err) throw err;
 		console.log(result);
 	});
-	con.query(`USE ${keys.DB_NAME}`, (err, result) => {
+	con.query(`USE ${keys.Database}`, (err, result) => {
 		if (err) throw err;
 		return result;
   });
