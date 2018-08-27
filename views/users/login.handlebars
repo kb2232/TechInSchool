@@ -14,14 +14,14 @@
   <div class="alert alert-danger"><h4>{{message}}</h4></div>
 
   <div class="row">
-    <form class="col s4" method="POST" action="/login">
+    <form class="col s12" method="POST" action="/login">
       <div class="row">
         <div class="input-field col s6">
-          <input id="email" type="email" class="validate" name="email" required>
+          <input id="email" type="email" class="validate" name="email" placeholder="enter email" required>
           <label for="email">Email</label>
         </div>
         <div class="input-field col s6">
-          <input id="password" type="password" name="password" class="validate" required>
+          <input id="password" type="password" name="password" class="validate" placeholder="--------" required>
           <label for="password">Password</label>
         </div>
       </div>
@@ -29,6 +29,9 @@
       </button>
     </form>
   </div>
+  <p>You don't remember your password?
+    <br>Click here <a href="/signup">here</a>
+  </p>
 
 </body>
 

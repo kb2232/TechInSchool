@@ -73,16 +73,21 @@
       * password (encrypted)
       * house address (optional)
       * note you will need to reference this to the child per email
-    * Teacher info:
-      * name
+    * Teacher/user info:
+      * first name of teacher
+      * last name of teacher
       * school email (must be school email)
       * password (encrypted)
+      * school code (reference)
     * Student and Classes Info
       * student id (refernce key)
       * class id (reference key)
     * Teachers and Class id
-      * teacher id (refernce key)
-      * class id (refernce key)
+      * teacher id (reference key)
+      * class id (reference key)
+    * School name and code information
+      * name of school
+      * school code (this is primary key- this is string - do not auto increment this information)
     * Classes
       * name of class
       * i.d of class

@@ -61,3 +61,14 @@ textarea {
 .breadcrumb a {
   padding: 30px;
 }
+.brand {
+  margin-left: 50px;
+}
+/* Attendance Page */
+.selectClass {
+  display: block;
+  height: 100%;
+  margin: 50px auto;
+  padding: 15px;
+  width: 80%;
+}

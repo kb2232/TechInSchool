@@ -27,7 +27,10 @@ app.use(
   session({
     resave: true,
     saveUninitialized: true,
-    secret:keys.cookieSecret
+    secret:keys.cookieSecret,
+    cookie:{
+      maxAge :30 * 24 * 60 * 60 * 1000
+    }
   })
 );
 app.use(passport.initialize());//the above starts serializeUser
@@ -71,7 +74,8 @@ ApiRoute(app);
 AuthRoute(app, passport);
 
 //dynamic porting
-var PORT = process.env.PORT || keys.portnumber;
+//const PORT = process.env.PORT || keys.Port || 8181;
+const PORT = 8181;
 app.listen(PORT,()=>{
   console.log(`Server listen at door:${PORT}`);
 });
