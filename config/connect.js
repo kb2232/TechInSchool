@@ -18,7 +18,7 @@ if (process.env.JAWSDB_URL) {
 		// table names and queries
 		const table1 = 'schools',
 			table2 = 'users';
-		//drop tables just incase they exist already
+		//drop tables just incase they exist already - comment out drop table lines if you get error in heroku
 		con.query(`DROP TABLE ${table1}`, (err, result) => {
 			if (err) throw err;
 			console.log('-----Table1 deleted!!!-----');
@@ -37,7 +37,7 @@ if (process.env.JAWSDB_URL) {
 		user_id VARCHAR(50) UNIQUE,
 		firstname VARCHAR(50) NOT NULL,
 		lastname VARCHAR(50) NOT NULL,
-		email VARCHAR(50) NOT NULL UNIQUE,
+		email VARCHAR(50) NOT NULL,
 		password VARCHAR(150),
 		school_code VARCHAR(50) NOT NULL,
 		FOREIGN KEY(school_code) REFERENCES schools(code)

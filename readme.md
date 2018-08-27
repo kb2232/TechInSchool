@@ -3,10 +3,11 @@
 
   - [mvp](https://github.com/kb2232/TechInSchool)
 
-# Packages
+# Packages (a few where not used)
   ```JSON
   {
     "assert": "^1.4.1",
+    "bcrypt": "^3.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -41,20 +42,19 @@
                                     -----------------------------
   ```
   * config/
-    * prod.js
+    * prod.js - use for production
     * dev.js - we do not commit
-    * key.js
-    * connect.js
-    * ORM.js
-    * passport.js
+    * key.js - redirects based on (prod.env==='PRODUCTION')?
+    * connect.js - acting as ORM 
+    * passport.js - handle authentication
   * Controllers/
-    * apiRoute.js
-    * authRoute.js
-    * clientRoute.js
+    * apiRoute.js - feature routes
+    * authRoute.js - signup and login route - very minimal access to the database
+    * clientRoute.js - views route
   * database/
-    * attendance.sql
+    * attendance.sql - for developement database
   * helper/
-    * auth.js
+    * auth.js - use to ensure authentication
     * hbs.js
   * Models/
     * connection.js
@@ -74,16 +74,17 @@
       * main.handlebars
     * parent stories
       * mychild.handlebars
+      * parentprofile.handlebars
     * partials/
       * _footer.handlebars
       * _navbar.handlebars
-      * _breadcrumb.handlebars
     * student_stories
       * mypage.handlebars
     * teacher_stories
       * attendance.handlebars
       * quizzes.handlebars
     * users
+      * createPass
       * login
       * profile
       * signup
