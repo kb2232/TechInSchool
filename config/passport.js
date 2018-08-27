@@ -1,7 +1,7 @@
-const passport = require("passport"),
+const passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require("bcrypt-nodejs"),
-connection = require("./connect");
+const bcrypt = require('bcrypt-nodejs'),
+	connection = require('./connect');
 
 module.exports = function(passport) {
 	passport.serializeUser((newuser, done) => {
@@ -26,7 +26,8 @@ module.exports = function(passport) {
 	// we are using named strategies since we have one for login and one for signup
 	// by default, if there was no name, it would just be called 'local'
 
-	passport.use(new LocalStrategy(
+	passport.use(
+		new LocalStrategy(
 			{
 				usernameField: 'email',
 				passwordField: 'password',
@@ -36,17 +37,27 @@ module.exports = function(passport) {
 			(req, email, password, done) => 
 			{
 				// find user in our database
-				connection.query('SELECT * FROM users WHERE email = ?', [email], (err, rows)=>{
+				connection.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => 
+				{
 					if (err) return done(err);
 					if (!rows.length) {
-						return done(null, false, req.flash('loginMessage', 'No user found.')); 
+						return done(null, false, req.flash('loginMessage', 'No user found.'));
 					}
-					// if the user is found but the password is wrong
-					if (!bcrypt.compareSync(password, rows[0].password))
-						return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
-					// all is well, return successful user
-					return done(null, rows[0]);
+					const correctUser = [];
+
+					rows.forEach(row => {
+						if(row.password===undefined || row.password===null || bcrypt.compareSync(password, row.password))
+						{
+							// return the user we want with matching password
+							console.log("matched user = ",row);
+							correctUser.push(row);
+						} 
+					});
+					// if the user is found but the password is wrong
+					if (correctUser.length===0 || correctUser[0].password===undefined || correctUser[0].password===null || !bcrypt.compareSync(password, correctUser[0].password))
+						return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+					return done(null, correctUser[0]);
 				});
 			}
 		)

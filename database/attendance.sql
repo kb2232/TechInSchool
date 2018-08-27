@@ -12,13 +12,14 @@ CREATE TABLE schools(
 
 -- Create teacher table;
 CREATE TABLE users (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  firstname VARCHAR(50) NOT NULL,
-  lastname VARCHAR(50) NOT NULL,
-  email VARCHAR(50) NOT NULL UNIQUE,
-  password VARCHAR(150) NOT NULL,
-  school_code VARCHAR(50) NOT NULL,
-  FOREIGN KEY(school_code) REFERENCES schools(code)
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+		user_id VARCHAR(50) UNIQUE,
+		firstname VARCHAR(50) NOT NULL,
+		lastname VARCHAR(50) NOT NULL,
+		email VARCHAR(50) NOT NULL,
+		password VARCHAR(150),
+		school_code VARCHAR(50) NOT NULL,
+		FOREIGN KEY(school_code) REFERENCES schools(code)
 );
 
 SHOW TABLES;
@@ -33,15 +34,18 @@ VALUES
 
 
 -- insert teachers;
-INSERT INTO users(firstname,lastname,email,password,school_code)
+INSERT INTO users (user_id,firstname,lastname,email,school_code)
 VALUES
-("kunle","babatunde","kbabatunde@broomestreete.com","broome18*","1QFXT5R"),
-("taleisa","babatunde","taleisia.babatunde@leadershipprep.com","uncommon1","00IO28D"),
-("ozzie","henderson","ozzie.henderson@saschools.org","success1","1FF095R"),
-("Lovina","Jackman","lovina.jackman@ascendhigh.com","ascend1","0WEXT57");
+('1XR1kb','kunle', 'babatunde', 'kunle.kunle@broomestreet.com', '1QFXT5R'),
+('1XR2kb','kunle', 'babatunde', 'kunle.kunle@broomestreet.com', '1QFXT5R'),
+('1XR1yy','yesenia', 'yezuri', 'yesenia.yesenia@broomestreet.com', '1QFXT5R'),
+('1XR1tb','taleisia', 'babatunde', 'taleisia.babatunde@leadershipprep.com', '00IO28D'),
+('1XR1rr','ronak', 'ray', 'ronak.ronak@sschools.org','1FF095R'),
+('1XR1sk','sean', 'kim', 'sean.sean@ascendhigh.com', '0WEXT57'),
+('1XR1mk','michael', 'kim', 'michael.michael@ascendhigh.com', '0WEXT57');
 
 SELECT * FROM users;
 
 --export PATH=${PATH}:/usr/local/mysql/bin/;
-SELECT id,firstname,lastname,email,SUBSTRING(password,1,10) AS 'pass...' 
+SELECT user_id,firstname,lastname,email, password
 FROM users;

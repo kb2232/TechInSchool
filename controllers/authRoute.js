@@ -71,37 +71,48 @@ module.exports = function(app, passport) {
 		let errors = [];
 
 		// second check email is correct
-		conn.query(`SELECT * from users WHERE email="${req.body.email}"`,(err,rows)=>{
+		conn.query(`SELECT * FROM users WHERE email="${req.body.email}"`,(err,rows)=>
+		{
 				if(err) return err;
 				if(!rows.length)
 				{
 					errors.push({ text: 'email does not exist ' });
 				} 
-				if (req.body.password !== req.body.password2) {
-					errors.push({ text: 'Passwords do not match' });
-				}
-				if (req.body.password.length < 5) {
-					errors.push({ text: 'Password must be at least 5 characters' });
-				}
-				if (errors.length > 0) {
-					res.render('users/createPass', {
-						errors: errors[0].text,
-						email: req.body.email,
-						password: req.body.password,
-						password2: req.body.password2,
-					});
-				} else {
-							// all is good
-					//hash the password
-					let salt = bcrypt.genSaltSync(10);
-					let hash = bcrypt.hashSync(req.body.password, salt);
-					// Store hash in your password DB.
-					conn.query(`UPDATE users SET password="${hash}" WHERE email="${req.body.email}"`,(err,rows)=>{
-						if(err) throw err;
-					})
-					//redirect to login
-					res.redirect('/login');
-				}
+				//make sure id is correct
+				conn.query(`SELECT * FROM users WHERE user_id="${req.body.code}"`,(err,rows)=>{
+					if(err) return err;
+					if(!rows.length)
+					{
+						errors.push({ text: 'wrong unique code ' });
+					}
+					//password check
+					if (req.body.password !== req.body.password2) {
+						errors.push({ text: 'Passwords do not match' });
+					}
+					if (req.body.password.length < 5) {
+						errors.push({ text: 'Password must be at least 5 characters' });
+					}
+					//send your erros
+					if (errors.length > 0) {
+						res.render('users/createPass', {
+							errors: errors[0].text,
+							email: req.body.email,
+							password: req.body.password,
+							password2: req.body.password2,
+						});
+					} else {
+								// all is good
+						//hash the password
+						let salt = bcrypt.genSaltSync(10);
+						let hash = bcrypt.hashSync(req.body.password, salt);
+						// Store hash in your password DB.
+						conn.query(`UPDATE users SET password="${hash}" WHERE user_id="${req.body.code}"`,(err,rows)=>{
+							if(err) throw err;
+						})
+						//redirect to login
+						res.redirect('/login');
+					} 
+				});
 		});
 	}
 );
