@@ -35,6 +35,17 @@ module.exports = function(app, passport) {
 			res.redirect('/');
 		});
 
+	// general signup
+	app.get('/generalsignup',(req,res)=>{
+		res.render('users/generalsignup');
+	});
+
+	//create account FOR GENERAL users
+	app.get('/signupgeneral',(req,res)=>{
+		res.render('users/signupgeneral')
+	});
+
+
 	// =====================================
 	// SIGNUP ==============================
 	// =====================================
@@ -114,8 +125,12 @@ module.exports = function(app, passport) {
 					} 
 				});
 		});
-	}
-);
+	});
+	//general signup post
+	app.post('/generalSignup',(req,res)=>{
+		console.log("body = ",req.body);
+		res.render('users/createGeneralUser')
+	})
 
 	// =====================================
 	// LOGOUT ==============================

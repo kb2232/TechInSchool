@@ -22,6 +22,16 @@ CREATE TABLE users (
 		FOREIGN KEY(school_code) REFERENCES schools(code)
 );
 
+-- create agenda table;
+CREATE TABLE agenda(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	title VARCHAR(50) NOT NULL,
+	createdAt TIMESTAMP DEFAULT NOW(),
+	agendaMessage LONGTEXT NOT NULL,
+	user VARCHAR(50) NOT NULL,
+	FOREIGN KEY(user) REFERENCES users(user_id)
+);
+
 SHOW TABLES;
 
 -- insert into schools;
@@ -44,8 +54,20 @@ VALUES
 ('1XR1sk','sean', 'kim', 'sean.sean@ascendhigh.com', '0WEXT57'),
 ('1XR1mk','michael', 'kim', 'michael.michael@ascendhigh.com', '0WEXT57');
 
+
+-- insert into agendas;
+INSERT INTO agenda(title,agendaMessage,user) VALUES("test1","yesenia test","1XR1yy"),("test2","taleisia test","1XR1tb"), ("test3","kunle1 test","1XR1kb"),("test4","kunle2 test","1XR2kb"),("test3b","kunle1 test","1XR1kb"), ("test5","kunle2 test","1XR2kb");
+
+
 SELECT * FROM users;
 
+
+
+
 --export PATH=${PATH}:/usr/local/mysql/bin/;
-SELECT user_id,firstname,lastname,email, password
+SELECT user_id,firstname,email, password
 FROM users;
+
+
+
+SELECT agenda.id, users.id AS 'uid', title, createdAt, agendaMessage FROM agenda INNER JOIN users  ON agenda.user = users.user_id WHERE user_id = "1XR1kb";

@@ -3,6 +3,7 @@ const express = require('express'),
   session  = require('express-session'),
   cookieParser = require('cookie-parser'),
   bdParser = require('body-parser'),
+  methodOveride = require('method-override'),
   exphps = require('express-handlebars'),
   ClientRoute = require('./controllers/clientRoute'),
   ApiRoute = require('./controllers/apiRoute'),
@@ -20,6 +21,8 @@ app.use(
   bdParser.urlencoded({extended: true})
 );
 app.use(bdParser.json());
+//method override
+app.use(methodOveride('_method'));
 
 //cookie middleware
 //used to set parameters for cookie

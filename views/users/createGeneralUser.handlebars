@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>signupUsers</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <form action="/alluserlogin" method="POST">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" value="{{email}}" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="firstname" value="{{firstname}}" placeholder="Enter your First Name" required>
+          </div>
+            <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lastname" value="{{lastname}}" placeholder="Enter your Last Name" required>
+          </div>
+            <div class="form-group">
+            <label>Username(use to login)</label>
+            <input type="text" class="form-control" name="username" value="{{username}}" placeholder="Enter a creative unique username" required>
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Confirm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
