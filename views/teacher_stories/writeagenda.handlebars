@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <h3>Hello {{user.lastname}}</h3>
+    <div class="row">
+      <form class="col s12" action="/postagenda" method="POST">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">title</i>
+            <input type="text" name="title" class="validate">
+            <label for="icon_title">Meeting Title</label>
+          </div>
+          <div class="input-field col s6">
+            <label for="date"></label>
+            <input type="date" name="date" class="validate">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <h4> Today's Agenda : </h4>
+            <textarea id="messageField" name="message"> </textarea>
+            <button class="btn btn-success" type="submit"> Save </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+
+    {{#each data}}
+    <form action="/delete/" method="GET">
+    <div class="row center">
+      <div class="col 10">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">{{this.title}}</span>
+            <p>{{{this.agendaMessage}}}</p>
+            <div class="card-action">
+              {{this.createdAt}}
+              <button type="submit" class="btn red"><i class="fa fa-remove"></i> Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+    {{/each}}
+  </div>
+  <script type="text/javascript">
+    $('#agenda').on('click', () => {
+
+    })
+  </script>
+
+</body>
+
+</html>

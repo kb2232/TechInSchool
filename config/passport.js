@@ -50,7 +50,6 @@ module.exports = function(passport) {
 						if(row.password===undefined || row.password===null || bcrypt.compareSync(password, row.password))
 						{
 							// return the user we want with matching password
-							console.log("matched user = ",row);
 							correctUser.push(row);
 						} 
 					});
