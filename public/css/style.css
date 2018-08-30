@@ -72,6 +72,33 @@ textarea {
 }
 
 /* Take Attendance Page */
+
+  /* Take Attendance Modal */
+  #studentImageCircle {
+    float: left;
+    max-height: 300px;
+    max-width: 300px;
+    padding: 30px;
+  }
+
+  #studentName {
+    font-size: 2em;
+  }
+
+  #studentID {
+    font-size: 2em;
+  }
+
+  .details {
+    clear: both;
+    font-size: 1.5em;
+  }
+
+  /* Take Attendance Dropdown Menu */
+  .attendanceValue {
+    justify-content: center;
+  }
+
 #studentList {
   border: 1px solid black;
   border-radius: 5px;
@@ -90,6 +117,10 @@ textarea {
 
 .markAttendance {
   background-color: #90EE90;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
 }
 
 #submitAttendance {

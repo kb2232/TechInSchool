@@ -1,77 +1,98 @@
 <body>
   <div class="container">
+    {{!-- Title where Class Name and Time will be displayed. --}}
     <h5 id="classTitle"> Class Name and Time Here </h5>
+
+    {{!-- For each student, we will create a card that displays the student's image, name, and attendance value --}}
     <div class="row">
       {{#each students}}
         <div class="col s4">
-          <div class="card modal-trigger" href="#modal1">
-            <div class="card-image">
+          <div class="card" data-id={{id}}>
+            <div class="card-image modal-trigger" href="#modal{{id}}" data-id={{id}}>
               <img src={{linktophoto}} class="studentImage">
             </div>
-            <div class="card-content">
+            <div class="card-content modal-trigger" href="#modal{{id}}" data-id={{id}}>
               <p> {{firstname}} {{lastname}} </p>
             </div>
             <div class="card-action">
-              	<!-- Dropdown Trigger -->
-              	<a class='dropdown-button btn markAttendance' data-activates='dropdown1'> Present </a>
+              <button class='dropdown-button markAttendance' data-activates='dropdown{{id}}'> PRESENT </button>
             </div>
           </div>
         </div>
-        {{!-- <li style="clear: both; padding: 30px 0px;">
-          <img src={{linktophoto}} class="studentImage">
 
-          <!-- Buttons will have 4 different colors to define attendance
-            TODO: Colors are subject to change.
-                On click, the button will branch out into a small little menu to mark the attendance.
-                FOR REFERENCE: https://www.youtube.com/watch?v=AIdslaUj9wg&t=923s
-            ABSENT: RED #ffb3b3
-            PRESENT: GREEN #90EE90
-            LATE: ORANGE #FFD700
-            EXCUSED: BLUE #87CEEB
-          -->
-          <button class="btn waves-effect waves-light markAttendance">  </button>
+        {{!-- Modal that will popup when the card is clicked --}}
+        <div id="modal{{id}}" class="modal">
+          <div class="modal-content">
+            <img src={{linktophoto}} class="circle" id="studentImageCircle">
+            <p id="studentName"> {{firstname}} {{lastname}} </p>
+            <p id="studentID"> ID: {{id}} </p>
+            <table>
+              <thead>
+                <td rowspan="2">
+                  <p class="details"> DETAILS: </p>
+                </td>
+              </thead>
+              <tr>
+                <td>
+                  <p> Address : </p>
+                </td>
+                <td>
+                  <p> {{address}} </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p> Phone Number : </p>
+                </td>
+                <td>
+                  <p> {{phonenumber}} </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p> Parent 1 : </p>
+                </td>
+                <td>
+                  <p> NULL </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p> Parent 2 : </p>
+                </td>
+                <td>
+                  <p> NULL </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="modal-action modal-close center-align"> View Attendance Record </a>
+          </div>
+        </div>
 
-          <!-- Include this for each student?? -->
-          <!-- <a class="viewRecord" href="#"> View Attendance Record </a> -->
-          <p> {{firstname}} {{lastname}} </p>
-          <p> {{address}} </p>
-          <p> {{phonenumber}} </p>
-
-        </li> --}}
+        {{!-- Dropdown Menu that displays all the attendance values --}}
+        <ul id='dropdown{{id}}' class='dropdown-content'>
+          <li class="attendanceValue valign-wrapper" style="background-color: #FFB3B3"> ABSENT </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #FFD700"> LATE </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #87CEEB"> EXCUSED </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #90EE90"> PRESENT </li>
+        </ul>
       {{/each}}
     </div>
     <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
-
-	<!-- Modal Structure -->
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<img src="https://vignette.wikia.nocookie.net/blogclan-2/images/4/45/Random-turtle.gif/revision/latest?cb=20160706220110" class="circle">
-			<p> NAME HERE </p>
-			<p> ID: 1237923 </p>
-			<p> DETAILS: </p>
-			<p> Address : 123 New St. </p>
-			<p> Phone Number : 123-456-7894</p>
-			<p> Parent 1 : NAME HERE SR. </p>
-			<p> Parent 2 : NAMO HERE </p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="modal-action modal-close center-align"> View Attendance Record </a>
-		</div>
-	</div>
-
-	<!-- Dropdown Structure -->
-	<ul id='dropdown1' class='dropdown-content'>
-		<li style="background-color: #FFB3B3"> ABSENT </li>
-		<li style="background-color: #FFD700"> LATE </li>
-		<li style="background-color: #87CEEB"> EXCUSED </li>
-		<li style="background-color: #90EE90"> PRESENT </li>
-	</ul>
   </div>
 
-  <script type="text/javascript">
-	$(document).ready(function(){
-		$('.dropdown-trigger').dropdown();
-		$('.modal').modal();
-	});
+  <script>
+    $(document).ready(function(){
+      $("#submitAttendance").on("click", function(){
+          $('.dropdown-trigger').dropdown();
+      });
+
+      $(".card").on("click", function(){
+          $('.modal').modal();
+      });
+    });
   </script>
+
 </body>

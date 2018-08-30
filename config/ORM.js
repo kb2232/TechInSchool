@@ -7,6 +7,13 @@ var attendanceORM = {
       if (error) throw error;
       sendResult(response);
     });
+  },
+  studentDetails: function(studentTable, studentIDColumn, studentID, sendResult) {
+    var query = "SELECT * FROM ?? WHERE ?? = ?";
+    connection.query(query, [studentTable, studentIDColumn, studentID], function(error, response){
+      if (error) throw error;
+      sendResult(response);
+    });
   }
 };
 
