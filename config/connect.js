@@ -3,30 +3,40 @@ keys = require('./keys');
 /////////CONNECTON///////////////////////////////////////
 if (process.env.JAWSDB_URL) {
 	const con = sql.createConnection(process.env.JAWSDB_URL);
-	con.connect(err => {
-		if (err) throw err;
-
-		con.query('select @@hostname', (err, result) => {
-			if (err) throw err;
-			console.log(result);
-		});
-
+	con.connect(err => 
+	{
+		if (err) { 
+			console.log("cannot connect"); 
+			return;
+		}
+		//use database
 		con.query(`USE ${process.env.Database}`, (err, result) => {
-			if (err) throw err;
-			console.log(result);
+			if (err) { 
+				console.log("cannot use database"); 
+				return;
+			}
 		});
+
 		// table names and queries
 		const table1 = 'schools',
-			table2 = 'users';
+			table2 = 'users', table3='agenda';
+
 		//drop tables just incase they exist already - comment out drop table lines if you get error in heroku
 		con.query(`DROP TABLE ${table1}`, (err, result) => {
-			if (err) throw err;
+			if (err) { 
+				console.log("cannot drop table"); 
+				return;
+			}
 			console.log('-----Table1 deleted!!!-----');
 		});
 		con.query(`DROP TABLE ${table2}`, (err, result) => {
-			if (err) throw err;
+			if (err) { 
+				console.log("cannot drop table"); 
+				return;
+			}
 			console.log('-----Table2 deleted!!!-----');
 		});
+
 		// create table queries
 		const sqlT1 = `CREATE TABLE ${table1} (
 			code VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -42,6 +52,14 @@ if (process.env.JAWSDB_URL) {
 		school_code VARCHAR(50) NOT NULL,
 		FOREIGN KEY(school_code) REFERENCES schools(code)
 		)`
+		const sqt3 = `CREATE TABLE ${table3} (
+			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+			title VARCHAR(50) NOT NULL,
+			createdAt TIMESTAMP DEFAULT NOW(),
+			agendaMessage LONGTEXT NOT NULL,
+			user VARCHAR(50) NOT NULL,
+			FOREIGN KEY(user) REFERENCES users(user_id)
+		)`
 		// create tables
 		con.query(sqlT1, (err, result) => {
 			if (err) throw err;
@@ -50,6 +68,10 @@ if (process.env.JAWSDB_URL) {
 		con.query(sqlT2, (err, result) => {
 			if (err) throw err;
 			console.log('-----Table2 Created!!!-----');
+		});
+		con.query(sqt3, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table3 Created!!!-----');
 		});
 		//show tables
 		con.query('SHOW TABLES', (err, result) => {
@@ -81,6 +103,21 @@ if (process.env.JAWSDB_URL) {
 			['1XR1mk','michael', 'kim', 'michael.michael@ascendhigh.com', '0WEXT57'],
 		];
 		con.query(sqlV2, [values2], (err, result) => {
+			if (err) {
+				throw err;
+			} else console.log('\nNumber of records inserted:' + result.affectedRows);
+		});
+		//inserting values to table 3.
+		var sqv3 = `INSERT INTO ${table3}(title,agendaMessage,user) VALUES?`;
+		var values3 = [
+			["test1","yesenia test","1XR1yy"],
+			["test2","taleisia test","1XR1tb"],
+			["test3","kunle1 test","1XR1kb"],
+			["test4","kunle2 test","1XR2kb"],
+			["test3b","kunle1 test","1XR1kb"],
+			["test5","kunle2 test","1XR2kb"],
+		]
+		con.query(sqv3, [values3], (err, result) => {
 			if (err) {
 				throw err;
 			} else console.log('\nNumber of records inserted:' + result.affectedRows);
