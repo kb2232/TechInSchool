@@ -1,13 +1,14 @@
 <body>
   <div class="container" id="class-select">
     {{#each classes}}
-      <button class="btn waves-effect waves-light selectClass"> {{classname}} <br> {{timePeriod}}, {{day}} </button>
+      <button class="btn waves-effect waves-light selectClass" id={{id}}> {{classname}} <br> {{timePeriod}}, {{day}} </button>
     {{/each}}
   </div>
 </body>
 
 <script type="text/javascript">
   $('.selectClass').on("click", function(){
+    sessionStorage.setItem('selectedClass', $(this).attr("id"));
     window.location.href = "./takeAttendance"
   });
 </script>
