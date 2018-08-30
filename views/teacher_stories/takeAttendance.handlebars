@@ -1,9 +1,23 @@
 <body>
   <div class="container">
-    <ul id="studentList">
-      <h5 id="classTitle"> Class Name and Time Here </h5>
+    <h5 id="classTitle"> Class Name and Time Here </h5>
+    <div class="row">
       {{#each students}}
-        <li style="clear: both; padding: 30px 0px;">
+        <div class="col s4">
+          <div class="card modal-trigger" href="#modal1">
+            <div class="card-image">
+              <img src={{linktophoto}} class="studentImage">
+            </div>
+            <div class="card-content">
+              <p> {{firstname}} {{lastname}} </p>
+            </div>
+            <div class="card-action">
+              	<!-- Dropdown Trigger -->
+              	<a class='dropdown-button btn markAttendance' data-activates='dropdown1'> Present </a>
+            </div>
+          </div>
+        </div>
+        {{!-- <li style="clear: both; padding: 30px 0px;">
           <img src={{linktophoto}} class="studentImage">
 
           <!-- Buttons will have 4 different colors to define attendance
@@ -23,9 +37,41 @@
           <p> {{address}} </p>
           <p> {{phonenumber}} </p>
 
-        </li>
+        </li> --}}
       {{/each}}
-      <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
-    </ul>
+    </div>
+    <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
+
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<img src="https://vignette.wikia.nocookie.net/blogclan-2/images/4/45/Random-turtle.gif/revision/latest?cb=20160706220110" class="circle">
+			<p> NAME HERE </p>
+			<p> ID: 1237923 </p>
+			<p> DETAILS: </p>
+			<p> Address : 123 New St. </p>
+			<p> Phone Number : 123-456-7894</p>
+			<p> Parent 1 : NAME HERE SR. </p>
+			<p> Parent 2 : NAMO HERE </p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="modal-action modal-close center-align"> View Attendance Record </a>
+		</div>
+	</div>
+
+	<!-- Dropdown Structure -->
+	<ul id='dropdown1' class='dropdown-content'>
+		<li style="background-color: #FFB3B3"> ABSENT </li>
+		<li style="background-color: #FFD700"> LATE </li>
+		<li style="background-color: #87CEEB"> EXCUSED </li>
+		<li style="background-color: #90EE90"> PRESENT </li>
+	</ul>
   </div>
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$('.dropdown-trigger').dropdown();
+		$('.modal').modal();
+	});
+  </script>
 </body>
