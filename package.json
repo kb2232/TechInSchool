@@ -33,6 +33,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "materialize-social": "^1.0.3",
     "method-override": "^3.0.0",
     "mocha-sql": "0.0.6",
     "moment": "^2.22.2",
