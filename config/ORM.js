@@ -7,22 +7,21 @@ var attendanceORM = {
       if (error) throw error;
       sendResult(response);
     });
-  }
-  // TODO: Need to be fixed for later.
-  /* allStudents: function(studentTable, classIDColumn, classID, sendResult) {
-    var query = "SELECT * FROM ?? WHERE ?? = ?";
-    connection.query(query, [studentTable, classIDColumn, classID], function(error, response){
+  },
+  studentsInClass: function(studentsTable, takesClassTable, studentIDColumn, tcStudentIDColumn, tcClassIDColumn, tcClassID, sendResult) {
+    var query = "SELECT * FROM ?? JOIN ?? ON ?? = ?? AND ?? = ?";
+    connection.query(query, [studentsTable, takesClassTable, studentIDColumn, tcStudentIDColumn, tcClassIDColumn, tcClassID], function(error, response){
       if (error) throw error;
       sendResult(response);
     });
   },
-  studentDetails: function(studentTable, studentIDColumn, studentID, sendResult) {
-    var query = "SELECT * FROM ?? WHERE ?? = ?";
-    connection.query(query, [studentTable, studentIDColumn, studentID], function(error, response){
+  viewRecordForStudent: function(attendanceTable, studentIDColumn, studentID, classIDColumn, classID, sendResult) {
+    var query = "SELECT date, status FROM ?? WHERE ?? = ? AND ?? = ?";
+    connection.query(query, [attendanceTable, studentIDColumn, studentID, classIDColumn, classID], function(error, response){
       if (error) throw error;
       sendResult(response);
-    });
-  } */
+    })
+  }
 };
 
 module.exports = attendanceORM;

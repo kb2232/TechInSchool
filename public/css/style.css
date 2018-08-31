@@ -111,12 +111,36 @@ textarea {
 
 .studentImage {
   float:left;
-  max-height: 150px;
-  padding-right: 20px;
+  max-height: 300px;
+  padding: 20px;
 }
 
-.markAttendance {
+.markAttendanceP {
   background-color: #90EE90;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceL {
+  background-color: #FFD700;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceE {
+  background-color: #87CEEB;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceA {
+  background-color: #FFB3B3;
   border: 1px;
   color: black;
   height: 50px;

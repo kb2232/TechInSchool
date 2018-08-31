@@ -1,4 +1,4 @@
-DROP DATABASE techinschools;
+DROP DATABASE IF EXISTS techinschools;
 CREATE DATABASE IF NOT EXISTS techinschools;
 SHOW DATABASES;
 USE techinschools;
@@ -12,7 +12,7 @@ CREATE TABLE users (
   pass_word VARCHAR(150) NOT NULL
 );
 
-DROP TABLE students;
+DROP TABLE IF EXISTS students;
 
 CREATE TABLE students (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -32,7 +32,7 @@ INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, bi
 
 SELECT * FROM students;
 
-DROP TABLE teachers;
+DROP TABLE IF EXISTS teachers;
 
 CREATE TABLE teachers (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -51,7 +51,7 @@ INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phone
 
 SELECT * FROM teachers;
 
-DROP TABLE class;
+DROP TABLE IF EXISTS class;
 
 CREATE TABLE class (
 	id INT NOT NULL PRIMARY KEY,
@@ -74,7 +74,7 @@ INSERT INTO class (id, teacherID, subject, classname, timePeriod, day) VALUES (8
 
 SELECT * FROM class;
 
-DROP TABLE attendance;
+DROP TABLE IF EXISTS attendance;
 
 CREATE TABLE attendance (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -93,6 +93,8 @@ INSERT INTO attendance (studentID, classID, attendanceValue, date) VALUES (3, 7,
 INSERT INTO attendance (studentID, classID, attendanceValue, date) VALUES (5, 8, "PRESENT", 08/30/2018);
 
 SELECT * FROM attendance;
+
+DROP TABLE IF EXISTS takesClass;
 
 CREATE TABLE takesClass (
     classID INT,
@@ -117,7 +119,5 @@ INSERT INTO takesClass (classID, studentID) VALUES (8, 5);
 SELECT * FROM takesClass;
 
 SELECT * FROM users;
-
-DROP TABLE takesClass;
 
 --export PATH=${PATH}:/usr/local/mysql/bin/;

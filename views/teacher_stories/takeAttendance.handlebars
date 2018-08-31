@@ -15,7 +15,7 @@
               <p> {{firstname}} {{lastname}} </p>
             </div>
             <div class="card-action">
-              <button class='dropdown-button markAttendance' data-activates='dropdown{{id}}'> PRESENT </button>
+              <button class='dropdown-button markAttendanceP' data-activates='dropdown{{id}}' id="status{{id}}"> PRESENT </button>
             </div>
           </div>
         </div>
@@ -26,6 +26,7 @@
             <img src={{linktophoto}} class="circle" id="studentImageCircle">
             <p id="studentName"> {{firstname}} {{lastname}} </p>
             <p id="studentID"> ID: {{id}} </p>
+            <a id="viewAttendance{{id}}" href="#"> View Attendance Record </a>
             <table>
               <thead>
                 <td rowspan="2">
@@ -48,35 +49,21 @@
                   <p> {{phonenumber}} </p>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <p> Parent 1 : </p>
-                </td>
-                <td>
-                  <p> NULL </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p> Parent 2 : </p>
-                </td>
-                <td>
-                  <p> NULL </p>
-                </td>
-              </tr>
             </table>
           </div>
           <div class="modal-footer">
-            <a href="#" class="modal-action modal-close center-align"> View Attendance Record </a>
+            <a href="#" class="modal-action modal-close"> Close </a>
           </div>
         </div>
 
+        {{!-- ID and Class Modal Here --}}
+
         {{!-- Dropdown Menu that displays all the attendance values --}}
         <ul id='dropdown{{id}}' class='dropdown-content'>
-          <li class="attendanceValue valign-wrapper" style="background-color: #FFB3B3"> ABSENT </li>
-          <li class="attendanceValue valign-wrapper" style="background-color: #FFD700"> LATE </li>
-          <li class="attendanceValue valign-wrapper" style="background-color: #87CEEB"> EXCUSED </li>
-          <li class="attendanceValue valign-wrapper" style="background-color: #90EE90"> PRESENT </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #FFB3B3" id="A{{id}}"> ABSENT </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #FFD700" id="L{{id}}"> LATE </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #87CEEB" id="E{{id}}"> EXCUSED </li>
+          <li class="attendanceValue valign-wrapper" style="background-color: #90EE90" id="P{{id}}"> PRESENT </li>
         </ul>
       {{/each}}
     </div>
@@ -86,11 +73,40 @@
   <script>
     $(document).ready(function(){
       $("#submitAttendance").on("click", function(){
-          $('.dropdown-trigger').dropdown();
+        $('.dropdown-trigger').dropdown();
       });
 
       $(".card").on("click", function(){
-          $('.modal').modal();
+        $('.modal').modal();
+      });
+
+      $(".attendanceValue").on("click", function(){
+        var status = $(this).attr("id").charAt(0);
+        var ID = $(this).attr("id").substring(1);
+
+        $("#status" + ID).removeClass("markAttendanceP");
+        $("#status" + ID).removeClass("markAttendanceL");
+        $("#status" + ID).removeClass("markAttendanceE");
+        $("#status" + ID).removeClass("markAttendanceA");
+        $("#status" + ID).addClass("markAttendance" + status);
+
+        switch (status) {
+          case "P" :
+            $("#status" + ID).text("PRESENT");
+            break;
+          case "L" :
+            $("#status" + ID).text("LATE");
+            break;
+          case "E" :
+            $("#status" + ID).text("EXCUSED");
+            break;
+          case "A" :
+            $("#status" + ID).text("ABSENT");
+            break;
+          default :
+            break;
+        }
+
       });
     });
   </script>
