@@ -28,5 +28,23 @@ class QUERY {
       callback(undefined,rows);
     });
   }
+  //select all information from users
+  getAllInfo(connect=con,colname,tablename,coltype,callback){
+    const sql = `SELECT * FROM ${tablename} where ${colname}="${coltype}"`;
+    con.query(sql, (err, rows) => {
+      if (err) callback(err);
+      callback(undefined,rows);
+    });
+  }
+  //update user passwords
+  updateUserPassWord(connect=con,tablename,colname1,passwordType,colname2, colname2Type,callback)
+  {
+    const sql = `UPDATE ${tablename} SET ${colname1}="${passwordType}" WHERE ${colname2}="${colname2Type}"`;
+    con.query(sql, (err, rows) => {
+      if (err) callback(err);
+      callback(undefined,rows);
+    });
+  }
+
 }
 module.exports = QUERY;
