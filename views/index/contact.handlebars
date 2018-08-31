@@ -3,18 +3,18 @@
     {{!-- Form --}}
     <form method="POST" action="/send">
       <h1> {{message}} </h1>
-      <p id="contactHeader"> Feel free to send us a message! :) </p>
+      <p id="contactHeader"> Complete the form below then click the Submit button :) </p>
       <div class="row">
-        <h4> Name : </h4>
+        <h4> Name: </h4>
         <input type="text" id="nameField" name="name">
-        <h4> Email : </h4>
+        <h4> Email: </h4>
         <input type="email" id="emailField" name="email">
-        <h4> Subject : </h4>
+        <h4> Subject: </h4>
         <input type="text" id="subjectField" name="subject">
-        <h4> Message : </h4>
+        <h4> Message: </h4>
         <textarea id="messageField" name="message"> </textarea>
-        <button class="btn btn-success" id="sendEmail" type="submit"> SEND </button>
+        <br>
+        <button class="btn blue darken-3" id="sendEmail" type="submit"> SUBMIT </button>
       </div>
     </form>
   </div>
-</body>
