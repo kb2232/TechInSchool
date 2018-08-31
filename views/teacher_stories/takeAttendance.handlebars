@@ -1,0 +1,108 @@
+<body>
+  <div class="container">
+    <a href="/">back to classes</a>
+    {{!-- Title where Class Name and Time will be displayed. --}}
+    <h5 id="classTitle"> Class Name and Time Here </h5>
+
+    {{!-- For each student, we will create a card that displays the student's image, name, and attendance value --}}
+    <div class="row">
+      {{#each students}}
+      <div class="col s4">
+        <div class="card" data-id={{id}}>
+          <div class="card-image modal-trigger" href="#modal{{id}}" data-id={{id}}>
+            <img src={{linktophoto}} class="studentImage">
+          </div>
+          <div class="card-content modal-trigger" href="#modal{{id}}" data-id={{id}}>
+            <p> {{firstname}} {{lastname}} </p>
+          </div>
+          <div class="card-action">
+            <button class='dropdown-button markAttendanceP' data-activates='dropdown{{id}}' id="status{{id}}"> PRESENT </button>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Modal that will popup when the card is clicked --}}
+      <div id="modal{{id}}" class="modal">
+        <div class="modal-content">
+          <img src={{linktophoto}} class="circle" id="studentImageCircle">
+          <p id="studentName"> {{firstname}} {{lastname}} </p>
+          <p id="studentID"> ID: {{id}} </p>
+          <a id="viewAttendance{{id}}" href="#"> View Attendance Record </a>
+          <table>
+            <thead>
+              <td rowspan="2">
+                <p class="details"> DETAILS: </p>
+              </td>
+            </thead>
+            <tr>
+              <td>
+                <p> Address : </p>
+              </td>
+              <td>
+                <p> {{address}} </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p> Phone Number : </p>
+              </td>
+              <td>
+                <p> {{phonenumber}} </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-action modal-close"> Close </a>
+        </div>
+      </div>
+
+      {{!-- ID and Class Modal Here --}} {{!-- Dropdown Menu that displays all the attendance values --}}
+      <ul id='dropdown{{id}}' class='dropdown-content'>
+        <li class="attendanceValue valign-wrapper" style="background-color: #FFB3B3" id="A{{id}}"> ABSENT </li>
+        <li class="attendanceValue valign-wrapper" style="background-color: #FFD700" id="L{{id}}"> LATE </li>
+        <li class="attendanceValue valign-wrapper" style="background-color: #87CEEB" id="E{{id}}"> EXCUSED </li>
+        <li class="attendanceValue valign-wrapper" style="background-color: #90EE90" id="P{{id}}"> PRESENT </li>
+      </ul>
+      {{/each}}
+    </div>
+    <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#submitAttendance").on("click", function () {
+        $('.dropdown-trigger').dropdown();
+      });
+      $(".card").on("click", function () {
+        $('.modal').modal();
+      });
+      $(".attendanceValue").on("click", function () {
+        var status = $(this).attr("id").charAt(0);
+        var ID = $(this).attr("id").substring(1);
+        $("#status" + ID).removeClass("markAttendanceP");
+        $("#status" + ID).removeClass("markAttendanceL");
+        $("#status" + ID).removeClass("markAttendanceE");
+        $("#status" + ID).removeClass("markAttendanceA");
+        $("#status" + ID).addClass("markAttendance" + status);
+        switch (status) {
+          case "P":
+            $("#status" + ID).text("PRESENT");
+            break;
+          case "L":
+            $("#status" + ID).text("LATE");
+            break;
+          case "E":
+            $("#status" + ID).text("EXCUSED");
+            break;
+          case "A":
+            $("#status" + ID).text("ABSENT");
+            break;
+          default:
+            break;
+        }
+      });
+    });
+  </script>
+
+</body>

@@ -1,39 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-
 <body>
   <div class="container" id="class-select">
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-body">
-            <h3>Welcome: {{user.firstname}} {{user.lastname}}</h3>
-            <p>Below you will find your classes - click to take attendance</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <button class="btn waves-effect waves-light selectClass"> Precalculus <br> 8:40 AM </button>
-        <button class="btn waves-effect waves-light selectClass"> Algebra 2 <br> 12:10 PM </button>
-        <button class="btn waves-effect waves-light selectClass"> Algebra 2 Honors <br> 1:40 PM </button>
-      </div>
-    </div>
+    {{#each classes}}
+      <button class="btn waves-effect waves-light selectClass" id={{id}}> {{classname}} <br> {{timePeriod}} <br> {{day}} </button>
+    {{/each}}
   </div>
 </body>
 
 <script type="text/javascript">
-  $('.selectClass').on("click", function () {
-
+  $('.selectClass').on("click", function(){
+    window.location.href = "./takeAttendance/" + $(this).attr("id");
   });
 </script>
-
-</html>

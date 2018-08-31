@@ -10,14 +10,6 @@ module.exports = app => {
 		res.render('index/welcome');
 	});
 	// =====================================
-	// ATTENDANCE SECTION =========================
-	// =====================================
-	app.get('/attendance', ensureAuthenticated,(req, res)=>{
-		res.render('teacher_stories/attendance',{
-			user:req.user,
-		});
-	});
-	// =====================================
 	// AGENDA SECTION =========================
 	// =====================================
 	app.get('/getagenda',ensureAuthenticated,(req,res)=>{

@@ -65,6 +65,87 @@ textarea {
   width: 80%;
 }
 
+/* Take Attendance Page */
+
+  /* Take Attendance Modal */
+  #studentImageCircle {
+    float: left;
+    max-height: 300px;
+    max-width: 300px;
+    padding: 30px;
+  }
+
+  #studentName {
+    font-size: 2em;
+  }
+
+  #studentID {
+    font-size: 2em;
+  }
+
+  .details {
+    clear: both;
+    font-size: 1.5em;
+  }
+
+  /* Take Attendance Dropdown Menu */
+  .attendanceValue {
+    justify-content: center;
+  }
+
+#studentList {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+#classTitle {
+  text-align: center;
+}
+
+.studentImage {
+  float:left;
+  max-height: 300px;
+  padding: 20px;
+}
+
+.markAttendanceP {
+  background-color: #90EE90;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceL {
+  background-color: #FFD700;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceE {
+  background-color: #87CEEB;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+.markAttendanceA {
+  background-color: #FFB3B3;
+  border: 1px;
+  color: black;
+  height: 50px;
+  width: 100%;
+}
+
+#submitAttendance {
+  display: block;
+  margin: 20px auto;
+}
+
 /* styles css */
 /* Custom Stylesheet */
 /**
