@@ -1,10 +1,12 @@
 const keys = require('../config/keys');
 const {ensureAuthenticated} = require('../helper/auth');
+const db = require("../seq_models");
+
 module.exports = app => {
 
     app.get('/contact',(req,res)=>{
         res.render("index/contact")
-    })
+	})
 
 	app.post('/send', (req, res) => {
 		console.log(req.body);
@@ -21,7 +23,8 @@ module.exports = app => {
 				pass: keys.EMAIL_PASSWORD, // generated ethereal password
 			},
 		});
-
+	
+	
 		// setup email data with unicode symbols
 		let mailOptions = {
 			from: req.body.email, // sender address
@@ -48,4 +51,23 @@ module.exports = app => {
 			// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 		});
 	});
+
+	app.get("/api/students", (req, res) => {
+		db.Student.findAll({}).then(function(student) {
+			res.json(student);
+		  });
+	});
+
+	app.post("/api/students/behavior", (req, res) => {
+		db.Behavior.create(req.body).then(function(behavior) {
+			res.json(behavior);
+		  });
+	});
+
+	app.get("/api/students/behavior", (req, res) => {
+		db.Behavior.findAll({}).then(function(behavior) {
+			res.json(behavior);
+		  });
+	});
+
 };

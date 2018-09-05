@@ -15,6 +15,8 @@ const app = express(),
 passport = require('passport'),
 flash    = require('connect-flash');
 require('./config/passport')(passport); // pass passport for configuration
+var db = require("./seq_models");
+
 
 app.use(cookieParser()); // read cookies (needed for auth)
 //body parser middleware - settings
@@ -82,6 +84,12 @@ AttendanceRoute(app);
 
 //dynamic porting
 const PORT = keys.Port || process.env.PORT || 8181;
-app.listen(PORT,()=>{
-  console.log(`Server listen at door:${PORT}`);
+// app.listen(PORT,()=>{
+//   console.log(`Server listen at door:${PORT}`);
+// });
+
+db.sequelize.sync({ force: false }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
