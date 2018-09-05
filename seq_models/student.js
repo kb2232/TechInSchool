@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Student = sequelize.define("Student", {
-    name: DataTypes.STRING
+    firstname: DataTypes.STRING
   });
 
   Student.associate = function(models) {

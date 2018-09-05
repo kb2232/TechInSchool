@@ -19,7 +19,7 @@
 
 <tbody>
     <tr>
-    <td>Alvin</td>
+    <td>Mock Student</td>
     <td>4th June, 2018</td>
     <td>He shouted and pull colors</td>
     <td>4.0</td>
@@ -66,5 +66,10 @@
             newRow.append(teacherName);
             tableBody.append(newRow);
         }
+    }
+
+    function displayEmpty(){
+        var emptyContent = $('<div class="card horizontal"><div class="card-stacked"><div class="card-content"><p>No Record exist</p></div></div>');
+        tableBody.append(emptyContent);
     }
 </script>
