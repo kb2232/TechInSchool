@@ -62,7 +62,8 @@ INSERT INTO agenda(title,agendaMessage,user) VALUES("test1","yesenia test","1XR1
 
 /*export PATH=${PATH}:/usr/local/mysql/bin/;*/
 
---- Mchael's code;
+
+DROP TABLE IF EXISTS takesClass;
 
 DROP TABLE IF EXISTS students;
 
@@ -145,8 +146,6 @@ INSERT INTO attendance (studentID, classID, attendanceValue, date) VALUES (3, 7,
 INSERT INTO attendance (studentID, classID, attendanceValue, date) VALUES (5, 8, "PRESENT", '2018-08-30');
 
 SELECT * FROM attendance;
-
-DROP TABLE IF EXISTS takesClass;
 
 CREATE TABLE takesClass (
     classID INT,

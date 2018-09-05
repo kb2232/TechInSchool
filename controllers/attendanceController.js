@@ -8,6 +8,10 @@ module.exports = app => {
 	// Requires confirmation that a teacher is logged in.
 	// TODO: Fix and change as necessary.
 	app.get('/takeAttendance/:id', ensureAuthenticated, function(request, response) {
+		var studentsAndClass = {
+			students : "",
+			class : ""
+		};
 		attendanceORM.studentsInClass(
 			'students',
 			'takesClass',
@@ -16,17 +20,36 @@ module.exports = app => {
 			'takesClass.classID',
 			request.params.id,
 			function(result) {
-				var studentHandlebars = {
-					students: result,
-				};
-				response.render('teacher_stories/takeAttendance', studentHandlebars);
+				studentsAndClass.students = result;
+			}
+		);
+		attendanceORM.getClassDetails(
+			'class',
+			'id',
+			request.params.id,
+			function(result) {
+				result[0].classname = result[0].classname.toUpperCase();
+				result[0].timePeriod = parseTime(result[0].timePeriod);
+				result[0].day = parseDay(result[0].day);
+				studentsAndClass.class = result;
+			}
+		);
+		attendanceORM.getAttendance(
+			'attendance',
+			'classID',
+			request.params.id,
+			'studentID',
+			2,
+			function(result) {
+				studentsAndClass.attendance = result;
+				console.log(studentsAndClass);
+				response.render('teacher_stories/takeAttendance', studentsAndClass);
 			}
 		);
 	});
 
 	app.get('/attendance', ensureAuthenticated, function(request, response) {
 		attendanceORM.allClasses('class', 'teacherID', 1, 'day', currentDate.getDay(), function(result) {
-			// TODO: Work off this for smoother UI
 			for (var i = 0; i < result.length; i++) {
 				result[i].timePeriod = parseTime(result[i].timePeriod);
 				result[i].day = parseDay(result[i].day);

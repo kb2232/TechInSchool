@@ -2,7 +2,11 @@
   <div class="container">
     <a href="/">back to classes</a>
     {{!-- Title where Class Name and Time will be displayed. --}}
-    <h5 id="classTitle"> Class Name and Time Here </h5>
+    <h5 id="classTitle"> 
+      {{#each class}}
+        <p> {{classname}} <br> {{timePeriod}} <br> {{day}} </p> 
+      {{/each}}
+    </h5>
 
     {{!-- For each student, we will create a card that displays the student's image, name, and attendance value --}}
     <div class="row">
@@ -27,11 +31,14 @@
           <img src={{linktophoto}} class="circle" id="studentImageCircle">
           <p id="studentName"> {{firstname}} {{lastname}} </p>
           <p id="studentID"> ID: {{id}} </p>
-          <a id="viewAttendance{{id}}" href="#"> View Attendance Record </a>
+          <a id="viewAttendance{{id}}" class="modal-trigger viewRecords" href="#modalRecord{{id}}"> View Attendance Record </a>
           <table>
             <thead>
-              <td rowspan="2">
+              <td>
                 <p class="details"> DETAILS: </p>
+              </td>
+              <td>
+
               </td>
             </thead>
             <tr>
@@ -57,6 +64,27 @@
         </div>
       </div>
 
+      {{!-- Modal that will popup when 'View Attendance Record' is clicked --}}
+      <div id="modalRecord{{id}}" class="modal">
+        <div class="modal-content">
+          <p id="studentName"> Attendance Record for {{firstname}} {{lastname}} </p>
+          <p id="studentID"> ID: {{id}} </p>
+          <table>
+            <thead>
+              <td>
+                <p> Date : </p>
+              </td>
+              <td>
+                <p> Attendance Value : </p>
+              </td>
+            </thead>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="modal-action modal-close"> Close </a>
+        </div>
+      </div>
+
       {{!-- ID and Class Modal Here --}} {{!-- Dropdown Menu that displays all the attendance values --}}
       <ul id='dropdown{{id}}' class='dropdown-content'>
         <li class="attendanceValue valign-wrapper" style="background-color: #FFB3B3" id="A{{id}}"> ABSENT </li>
@@ -75,7 +103,8 @@
         $('.dropdown-trigger').dropdown();
       });
       $(".card").on("click", function () {
-        $('.modal').modal();
+        var ID = $(this).attr("data-id");
+        $('#modal' + ID).modal();
       });
       $(".attendanceValue").on("click", function () {
         var status = $(this).attr("id").charAt(0);
@@ -101,6 +130,10 @@
           default:
             break;
         }
+      });
+      $(".viewRecords").on("click", function(){
+        var ID = $(this).attr("id").substring(14);
+        $(".modal").modal();
       });
     });
   </script>
