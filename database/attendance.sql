@@ -61,6 +61,8 @@ INSERT INTO agenda(title,agendaMessage,user) VALUES("test1","yesenia test",3),("
 
 
 DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS `Behaviors`;
+
 
 CREATE TABLE students (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -72,11 +74,11 @@ CREATE TABLE students (
     birthday DATE
 );
 
-INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Jeff", "Cash", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2011234522", "123 New St.", 06/21/2002);
-INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Nicole", "Jeffreys", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2014612532", "588 Main St.", 12/31/2001);
-INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("John", "Jordan", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2016946999", "522 Apple Pl.", 05/12/2002);
-INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Rebecca", "Cunningham", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2015321353", "483 Main St.", 01/05/2002);
-INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Brian", "Smith", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2018968412", "136 Market Ct.", 10/15/2001);
+INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Jeff", "Cash", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2011234522", "123 New St.", "2002-06-21");
+INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Nicole", "Jeffreys", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2014612532", "588 Main St.", "2002-06-21");
+INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("John", "Jordan", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2016946999", "522 Apple Pl.", "2003-05-22");
+INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Rebecca", "Cunningham", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2015321353", "483 Main St.", "2003-06-22");
+INSERT INTO students (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES ("Brian", "Smith", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2018968412", "136 Market Ct.", "2002-11-21");
 
 SELECT * FROM students;
 
@@ -92,10 +94,10 @@ CREATE TABLE teachers (
     phonenumber VARCHAR(10)
 );
 
-INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Robert", "Tree", "435 Magnolia Ave.", 02/21/1991, "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "5413155672");
-INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Chris", "Wotkins", "119 Howards St.", 10/04/1985, "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6531567894");
-INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Tony", "Li", "312 Carpenter Pl.", 07/28/1986, "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "1468971263");
-INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Samantha", "Gray", "3 14th St.", 03/01/1794, "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6544314893");
+INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Robert", "Tree", "435 Magnolia Ave.", '1991-12-1', "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "5413155672");
+INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Chris", "Wotkins", "119 Howards St.", "1985-04-10", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6531567894");
+INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Tony", "Li", "312 Carpenter Pl.", "1986-07-28", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "1468971263");
+INSERT INTO teachers (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES ("Samantha", "Gray", "3 14th St.", "1794-03-01", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6544314893");
 
 SELECT * FROM teachers;
 

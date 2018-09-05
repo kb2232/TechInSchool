@@ -48,4 +48,8 @@ module.exports = app => {
 		obj.editInfo(" ",req.body.title,req.body.message,req.user.id,req.params.id);
 		res.redirect('/writeagenda');
 	})
+
+	app.get('/behavior',ensureAuthenticated,(req, res)=>{
+		res.render("teacher_stories/behavior");
+	});
 };
