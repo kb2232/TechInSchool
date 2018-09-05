@@ -38,8 +38,6 @@ module.exports = app => {
 			'attendance',
 			'classID',
 			request.params.id,
-			'studentID',
-			2,
 			function(result) {
 				studentsAndClass.attendance = result;
 				console.log(studentsAndClass);
@@ -59,6 +57,19 @@ module.exports = app => {
 			};
 			response.render('teacher_stories/attendance', attendanceHandlebars);
 		});
+	});
+
+	app.post("/takeAttendance", function(request, response){
+		attendanceORM.insertAttendance(
+			request.body.id, 
+			request.body.studentID, 
+			request.body.classID, 
+			request.body.attendanceValue, 
+			request.body.date,
+			function (result){
+				console.log(result);
+			}
+		);
 	});
 
 	function parseTime(time) {
