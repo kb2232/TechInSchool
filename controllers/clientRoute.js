@@ -52,4 +52,8 @@ module.exports = app => {
 	app.get('/behavior',ensureAuthenticated,(req, res)=>{
 		res.render("teacher_stories/behavior");
 	});
+
+	app.get('/newBehavior',ensureAuthenticated,(req, res)=>{
+		res.render("teacher_stories/newbehavior");
+	});
 };

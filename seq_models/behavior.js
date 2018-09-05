@@ -39,5 +39,13 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
+  // Behavior.associate = function(models) {
+  //   Behavior.belongsTo(models.Teacher, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
+
   return Behavior;
 };

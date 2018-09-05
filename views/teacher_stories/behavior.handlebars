@@ -1,143 +1,70 @@
+<div class="container">
+    <div class="row center">
+        <h4>Behavior Records</h4>
+        <a class="waves-effect waves-light btn" href="/newBehavior"><i class="material-icons right">alarm_add</i>Create New</a>
+    </div>
+</div>
+<hr>
+<table class="striped">
+<thead>
+    <tr>
+        <th>Student Name</th>
+        <th>Incident Date/Time </th>
+        <th>Situation</th>
+        <th>Severity</th>
+        <th>Action</th>
+        <th>Teacher</th>
+    </tr>
+</thead>
 
-<body>
-  <div class="container" id="class-select">
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-body">
-            <h4>Enter New Behavior Record</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            <h4 for="teacher_name">Teacher Name : {{user.firstname}} {{user.lastname}} - </h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                <i class="material-icons prefix">textsms</i>
-                <input type="text" id="autocomplete-input" class="autocomplete">
-                <label for="autocomplete-input">Enter Student</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            <label>Select Date</label>
-            <input type="text" class="datepicker">
-        </div>
-        <div class="col s6">
-            <label>Select Time</label>
-            <input type="text" class="timepicker">
-        </div>
-    </div>
-
-    <div class="row">
-    <form class="col s12">
-        <label for="textarea1">Describe the Situation</label>
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-    </form>
-    </div>
-
-    <div class="row">
-        <div class="col s12">
-            <form action="#">
-                <p class="range-field">
-                <label for="range">Rate the Severity</label>
-                <input type="range" id="test5" min="0" max="10" />
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <div class="row">
-    <form class="col s12">
-            <label for="textarea2">Action taken by Teacher</label>
-          <textarea id="textarea2" class="materialize-textarea"></textarea>
-    </form>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-    </div>
-
-    
-{{!-- Class:_______
-Time of behavior: ______
-Problem:________
-What did you as a teacher do to help:______\
-Severity (1-10):___ --}}
-
+<tbody>
+    <tr>
+    <td>Alvin</td>
+    <td>4th June, 2018</td>
+    <td>He shouted and pull colors</td>
+    <td>4.0</td>
+    <td>first warning</td>
+    </tr>
+</tbody>
+</table>
 
 <script type="text/javascript">
+    var behaviors;
+    var tableBody = $("tbody");
     $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-        // Populate all student data here, so auto complete works
-        data: {
-            "Ronak": null,
-            "Kunle": null,
-            "Sean": 'https://placehold.it/250x250',
-            "Michael": null,
-            "Yesania": null
-        },
-        });
-    });
-    $(document).ready(function(){
-        $('.datepicker').datepicker();
+        getBehavior();
     });
 
-    $(document).ready(function(){
-        $('.timepicker').timepicker();
-    });
-
-    var studentName = $("#autocomplete-input").val();
-    var date = $(".datepicker").val();
-    var time = $(".timepicker").val();
-    var situation = $("#situation").val();
-    var severity = $("#severity").val();
-    var action = $("#action").val();
-
-    $("#b-form").on("submit", handleFormSubmit);
-
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        // Wont submit the post if we are missing a body, title, or author
-        //if (!studentName || !situation.trim() || !date) {
-          //  return;
-        //    }
-        // Constructing a newPost object to hand to the database
-        var newBehavior = {
-            situation: "terrible 2",
-            action: "All of them"
-            StudentId: 2
-            severity : 4,
-            date : 2016-08-09,
-            time : 04:05:0,
-            teacherName : "Ronak",
-
-        };
-
-        // If we're updating a post run updatePost to update a post
-        // Otherwise run submitPost to create a whole new post
-     
-        submitBehavior(newBehavior);
-
-    }
-         // Submits a new post and brings user to blog page upon completion
-    function submitBehavior(newBehavior) {
-        $.post("/api/students/behavior", newBehavior, function() {
-            console.log("Post successfull");
+    function getBehavior(){
+        $.get("api/students/behavior", function(data){
+            console.log("behavior", data);
+            behaviors = data;
+            if (!behaviors || !behaviors.length){
+                displayEmpty();
+            }
+            else{
+                showBehavior(behaviors);
+            }
         });
     }
 
-
-
+    function showBehavior(behaviors){
+        for (var i=0; i< behaviors.length; i++){
+            var newRow = $("<tr>");
+            var newStudentName = $("<td>").text(behaviors[i].StudentId);
+            var newAction = $("<td>").text(behaviors[i].action);
+            var newSeverity = $("<td>").text(behaviors[i].severity);
+            var newSituation = $("<td>").text(behaviors[i].situation);
+            var teacherName = $("<td>").text(behaviors[i].teacherName);
+            var incidentDateTime = $("<td>").text(moment(behaviors[i].date).format("MMM Do YY") +" , " + behaviors[i].time );
+            var teacherName = $("<td>").text(behaviors[i].teacherName);
+            newRow.append(newStudentName);
+            newRow.append(incidentDateTime);
+            newRow.append(newSituation);
+            newRow.append(newSeverity);
+            newRow.append(newAction);
+            newRow.append(teacherName);
+            tableBody.append(newRow);
+        }
+    }
 </script>
