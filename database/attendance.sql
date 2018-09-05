@@ -13,23 +13,23 @@ CREATE TABLE schools(
 -- Create teacher table;
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-		user_id VARCHAR(50) UNIQUE,
-		firstname VARCHAR(50) NOT NULL,
-		lastname VARCHAR(50) NOT NULL,
-		email VARCHAR(50) NOT NULL,
-		password VARCHAR(150),
-		school_code VARCHAR(50) NOT NULL,
-		FOREIGN KEY(school_code) REFERENCES schools(code)
+    user_id VARCHAR(50) UNIQUE,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(150),
+    school_code VARCHAR(50) NOT NULL,
+    FOREIGN KEY(school_code) REFERENCES schools(code)
 );
 
 -- create agenda table;
-CREATE TABLE agenda(
+CREATE TABLE agenda (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	title VARCHAR(50) NOT NULL,
-	createdAt TIMESTAMP DEFAULT NOW(),
+	createdAt DATETIME DEFAULT NOW(),
 	agendaMessage LONGTEXT NOT NULL,
-	user VARCHAR(50) NOT NULL,
-	FOREIGN KEY(user) REFERENCES users(user_id)
+	user INTEGER NOT NULL,
+	FOREIGN KEY(user) REFERENCES users(id)
 );
 
 SHOW TABLES;
@@ -54,9 +54,10 @@ VALUES
 ('1XR1sk','sean', 'kim', 'sean.sean@ascendhigh.com', '0WEXT57'),
 ('1XR1mk','michael', 'kim', 'michael.michael@ascendhigh.com', '0WEXT57');
 
+SELECT id, user_id, firstname, lastname, email FROM users;
 
 -- insert into agendas;
-INSERT INTO agenda(title,agendaMessage,user) VALUES("test1","yesenia test","1XR1yy"),("test2","taleisia test","1XR1tb"), ("test3","kunle1 test","1XR1kb"),("test4","kunle2 test","1XR2kb"),("test3b","kunle1 test","1XR1kb"), ("test5","kunle2 test","1XR2kb");
+INSERT INTO agenda(title,agendaMessage,user) VALUES("test1","yesenia test",3),("test2","taleisia test",4), ("test3","kunle1 test",1),("test4","kunle2 test",2),("test3b","kunle1 test",1), ("test5","kunle2 test",2);
 
 
 

@@ -12,14 +12,9 @@ module.exports = app => {
 	// =====================================
 	// AGENDA SECTION =========================
 	// =====================================
-	app.get('/getagenda',ensureAuthenticated,(req,res)=>{
-		res.render('teacher_stories/agenda',{
-			user:req.user,
-		})
-	});
 	app.get('/writeagenda',ensureAuthenticated,(req,res)=>{
 		//get data from database;
-		obj.selectALL(" ",req.user.user_id,(err,results)=>{
+		obj.selectALL(" ",req.user.id,(err,results)=>{
 			if(err) throw err;
 			res.render('teacher_stories/writeagenda',{
 				user:req.user,
@@ -28,15 +23,29 @@ module.exports = app => {
 		});
 	});
 	app.post('/postagenda',ensureAuthenticated,(req,res)=>{
-		obj.insertAgenda(" ",req.body.title,req.body.message,req.user.user_id);
+		obj.insertAgenda(" ",req.body.title,req.body.message,req.user.id);
 		res.redirect('/writeagenda')
 	});
-	app.get('/delete/',ensureAuthenticated,(req,res)=>{
-		console.log("param id = ",req.params.id);
-		console.log("body =",req.body);
-		obj.deleteONE(" ",req.user.id,(err,results)=>{
+
+	app.get('/deleterecord/:id',ensureAuthenticated,(req,res)=>{
+		obj.deleteONE(" ",req.params.id,(err,results)=>{
 			if(err) throw err;
 			res.redirect('/writeagenda');
 		});
+	});
+	//edit
+	app.get('/editinfo/:id',ensureAuthenticated,(req,res)=>{
+		obj.getOneAgenda(" ",req.params.id,(err,results)=>{
+			if(err) throw err;
+			 console.log("results = ",results);
+			res.render('teacher_stories/editAgenda',{
+				data:results[0]
+			});
+		});
+	});
+	//post edi
+	app.post('/postEdit/:id',ensureAuthenticated,(req,res)=>{
+		obj.editInfo(" ",req.body.title,req.body.message,req.user.id,req.params.id);
+		res.redirect('/writeagenda');
 	})
 };
