@@ -10,7 +10,7 @@
 
     {{!-- For each student, we will create a card that displays the student's image, name, and attendance value --}}
     <div class="row">
-      {{#each students}}
+      {{#students}}
       <div class="col s4">
         <div class="card" data-id={{id}}>
           <div class="card-image modal-trigger" href="#modal{{id}}" data-id={{id}}>
@@ -71,13 +71,16 @@
           <p id="studentID"> ID: {{id}} </p>
           <table>
             <thead>
-              <td>
+              <th>
                 <p> Date : </p>
-              </td>
-              <td>
-                <p> Attendance Value : </p>
-              </td>
+              </th>
+              <th>
+                <p class="center-align"> Attendance Value : </p>
+              </th>
             </thead>
+            <tbody id="recordTable{{id}}">
+
+            </tbody>
           </table>
         </div>
         <div class="modal-footer">
@@ -92,16 +95,13 @@
         <li class="attendanceValue valign-wrapper" style="background-color: #87CEEB" id="E{{id}}"> EXCUSED </li>
         <li class="attendanceValue valign-wrapper" style="background-color: #90EE90" id="P{{id}}"> PRESENT </li>
       </ul>
-      {{/each}}
+      {{/students}}
     </div>
     <button class="btn waves-effect waves-light" id="submitAttendance"> Submit Attendance </button>
   </div>
 
   <script>
     $(document).ready(function () {
-      $("#submitAttendance").on("click", function () {
-        $('.dropdown-trigger').dropdown();
-      });
       $(".card").on("click", function () {
         var ID = $(this).attr("data-id");
         $('#modal' + ID).modal();
@@ -132,10 +132,87 @@
         }
       });
       $(".viewRecords").on("click", function(){
-        var ID = $(this).attr("id").substring(14);
         $(".modal").modal();
+        var attendanceRecords = {{json attendance}};
+        var currentID = $(this).attr("id").substring(14);
+        $("#recordTable" + currentID).empty();
+        for (var i = 0; i < attendanceRecords.length; i++){
+          if (attendanceRecords[i].studentID == currentID){
+            var recordValue;
+            switch(attendanceRecords[i].attendancevalue) {
+              case "PRESENT" :
+                recordValue = "<div class='box' style='background-color: #90EE90'> </div>";
+                break;
+              case "ABSENT" :
+                recordValue = "<div class='box' style='background-color: #FFB3B3'> </div>";
+                break;
+              case "LATE" :
+                recordValue = "<div class='box' style='background-color: #FFD700'> </div>";
+                break;
+              case "EXCUSED" :
+                recordValue = "<div class='box' style='background-color: #87CEEB'> </div>";
+                break;
+              default :
+                break;
+            }
+            $("#recordTable" + currentID).append(
+              "<tr>" +
+                "<td>" +
+                  attendanceRecords[i].date +
+                "</td>" +
+                "<td>" +
+                  recordValue +
+                "</td>" +
+              "</tr>"
+              );
+          }
+        }
+      });
+      $("#submitAttendance").on("click", function(event){
+        event.preventDefault();
+
+        console.log({{json students}});
+        var studentList = {{json students}};
+        for (var i = 0; i < studentList.length; i ++){
+          var todaysDate = formatDateForID(new Date());
+          var ID = todaysDate + studentList[i].studentID + studentList[i].classID;
+
+          var attendanceRecord = {
+            id: ID,
+            studentID: studentList[i].studentID,
+            classID: studentList[i].classID,
+            attendanceValue: $("#status" + studentList[i].studentID).text().trim(),
+            date: formatDate(new Date())
+          };
+
+          // Send the POST request.
+          $.ajax("/takeAttendance", {
+              type: "POST",
+              data: attendanceRecord
+          });
+
+          setTimeout(function(){
+            window.location.href = window.location.origin + "/attendance";
+          }, 2000);
+        }
       });
     });
+
+    function formatDate(date) {
+      var day = date.getDate();
+      var month = date.getMonth();
+      var year = date.getFullYear();
+
+      return year + "-" + month + "-" + day;
+    }
+
+    function formatDateForID(date) {
+      var day = date.getDate();
+      var month = date.getMonth();
+      var year = date.getFullYear();
+
+      return year + "" + month + "" + day;
+    }
   </script>
 
 </body>

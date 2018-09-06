@@ -5,6 +5,7 @@ const express = require('express'),
   bdParser = require('body-parser'),
   methodOveride = require('method-override'),
   exphps = require('express-handlebars'),
+  handlebars = require('handlebars'),
   ClientRoute = require('./controllers/clientRoute'),
   ApiRoute = require('./controllers/apiRoute'),
   AuthRoute = require('./controllers/authRoute'),
@@ -57,6 +58,10 @@ Assigns setting name to value
 */
 app.set('view engine','handlebars');
 
+/* To be used as helpers in other files */
+handlebars.registerHelper('json', function(context){
+  return new handlebars.SafeString(JSON.stringify(context));
+});
 
 // Global variables
 app.use((req, res, next)=>{

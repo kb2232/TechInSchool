@@ -15,9 +15,9 @@ var attendanceORM = {
       sendResult(response);
     });
   },
-  getAttendance: function(attendanceTable, classIDColumn, classID, studentIDColumn, studentID, sendResult) {
-    var query = "SELECT * FROM ?? WHERE ?? = ? AND ?? = ?";
-    connection.query(query, [attendanceTable, classIDColumn, classID, studentIDColumn, studentID], function(error, response){
+  getAttendance: function(attendanceTable, classIDColumn, classID, sendResult) {
+    var query = "SELECT * FROM ?? WHERE ?? = ?";
+    connection.query(query, [attendanceTable, classIDColumn, classID], function(error, response){
       if (error) throw error;
       sendResult(response);
     });
@@ -35,7 +35,14 @@ var attendanceORM = {
       if (error) throw error;
       sendResult(response);
     })
-  }
+  },
+  insertAttendance: function(attendanceID, studentID, classID, attendanceValue, date, sendResult) {
+    var query = "INSERT INTO attendance (id, studentID, classID, attendanceValue, date) VALUES (?, ?, ?, ?, ?);"
+    connection.query(query, [attendanceID, studentID, classID, attendanceValue, date], function(error, response){
+      if (error) throw error;
+      sendResult(response);
+    });
+  } 
 };
 
 module.exports = attendanceORM;

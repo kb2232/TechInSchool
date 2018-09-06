@@ -88,6 +88,14 @@ textarea {
     font-size: 1.5em;
   }
 
+  /* Attendance Record Modal */
+  .box {
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+  }
+
   /* Take Attendance Dropdown Menu */
   .attendanceValue {
     justify-content: center;
