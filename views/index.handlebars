@@ -1,0 +1,25 @@
+<h1>Add Student</h1>
+<form action="/CreateStudent" method="post">
+    <input type="text" name="firstName" placeholder="firstName">
+    <input type="text" name="lastName" placeholder="lastname">
+    <button>Create Student</button>
+</form>
+<br>
+
+<h1>Students</h1>
+{{#each students}}
+    <h2>{{this.firstName}} {{this.lastName}}</h2>
+    <form action="/grade/{{id}}" method="post">
+        <input type="text" name="score" placeholder="score">
+        <button>Create Grade</button>
+    </form>
+
+    <h2>Grades</h2>
+    {{#each Grades}}
+        <h5>{{this.type}}: {{this.score}}</h5>
+    {{else}}
+        <h5>No Grade added</h5>
+    {{/each}}
+    <br>
+{{/each}}
+

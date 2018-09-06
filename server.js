@@ -1,83 +1,49 @@
-const express = require('express'),
-  path = require('path'),
-  session  = require('express-session'),
-  cookieParser = require('cookie-parser'),
-  bdParser = require('body-parser'),
-  methodOveride = require('method-override'),
-  exphps = require('express-handlebars'),
-  ClientRoute = require('./controllers/clientRoute'),
-  ApiRoute = require('./controllers/apiRoute'),
-  AuthRoute = require('./controllers/authRoute'),
-  keys = require('./config/keys');
-require('dotenv').config();
-const app = express(),
-passport = require('passport'),
-flash    = require('connect-flash');
-require('./config/passport')(passport); // pass passport for configuration
+const express = require("express");
+const bodyParser = require("body-parser");
+const exphbs = require("express-handlebars");
 
-app.use(cookieParser()); // read cookies (needed for auth)
-//body parser middleware - settings
-app.use(
-  bdParser.urlencoded({extended: true})
-);
-app.use(bdParser.json());
-//method override
-app.use(methodOveride('_method'));
+const app = express();
 
-//cookie middleware
-//used to set parameters for cookie
-app.use(
-  session({
-    resave: true,
-    saveUninitialized: true,
-    secret:keys.cookieSecret,
-    cookie:{
-      maxAge :30 * 24 * 60 * 60 * 1000
-    }
-  })
-);
-app.use(passport.initialize());//the above starts serializeUser
-app.use(passport.session()); //used to preprocess the token sent from the browser
-app.use(flash());// use connect-flash for flash messages stored in session
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
+const db = require("./models");
+require("./controllers/grade_controller.js")(app);
+require("./controllers/student_controller.js")(app);
+require("./controllers/class_controller.js")(app);
 
-//settings for middleware
-/*
-we need to define the engine were the app will display
-app.engine(extension, callback).
-When a request is made to fetch a page, the server looks for a file main with extension .handlebars inside directory ->views/layouts/
-*/
-app.engine('handlebars',exphps({defaultLayout:'main'}));
+/**
+ * SAMPLE METHODS
+ */
+// const Student = require("./models").Student;
+// Student.create({
+//     firstName: "Sean",
+//     lastName: "Kim"
+// }).then( student => {
+//     student.createGrade({
+//         type: "Exam",
+//         score: 100,
+//         date: "2017-9-04"
+//     }).then( () => {
+//         console.log("Created Student with Grade");
+//     })
+// })
 
-/*
-we need to set the above engine;
-app.set(name,value);
-Assigns setting name to value
-*/
-app.set('view engine','handlebars');
+// db.Student.findAll({
+//     include: [db.Grade]
+// }).then( students => {
+//     console.log(students[0].Grades)
+// })
 
-
-// Global variables
-app.use((req, res, next)=>{
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  //if we logged in we have access to user
-  res.locals.user = req.user || null;
-  next();
-});
-
-
-//to be able to use the PUBLIC folder
-app.use(express.static(path.join(__dirname,'public')));
-
-//pass app to routes below
-ClientRoute(app);
-ApiRoute(app);
-AuthRoute(app, passport);
-
-//dynamic porting
-const PORT = keys.Port || process.env.PORT || 8181;
-app.listen(PORT,()=>{
-  console.log(`Server listen at door:${PORT}`);
+const PORT = process.env.PORT || 3000;
+db.sequelize.sync({
+	// force: true,
+	// logging: console.log
+}).then(function() {
+	app.listen(PORT, function () {
+		console.log("App listening on PORT " + PORT);
+	});
 });

@@ -10,16 +10,15 @@
   <meta name="author" content="KRMS">
   <link rel="icon" href="image/s3.jpg" type="image" sizes="16x16"> 
 
-  {{! Materialize and Font Awesome}}
-  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> --}}
-  {{!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+ {{! Materialize and Font Awesome}}
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous"> --}}
 
   {{!-- googel apis --}}
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- CSS  -->
   <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/css/materialize-social.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   {{! JQuery }}
@@ -34,32 +33,8 @@
 </head>
 
 <body>
-  {{> _navbar}} {{#if user}} {{!-- {{> _addBtn}} --}} {{/if}}
-  <main>
-    <div class="container">
-      {{{body}}}
-    </div>
-  </main>
-  {{> _footer}}
-  {{!-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> --}}
-    <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/javascript/materialize.js"></script>
-  <script src="/javascript/init.js"></script>
-  <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-  <script>
-    $(document).ready(() => {
-      $('.button-collapse').sideNav();
-      $('select').material_select();
-    });
-    $(document).ready(function () {
-      $('.carousel').carousel();
-    });
-         CKEDITOR.replace('message');
-  </script>
-
+  {{{ body }}}
 </body>
 
 </html>
+
