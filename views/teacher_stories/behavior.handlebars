@@ -40,7 +40,7 @@
             console.log("behavior", data);
             behaviors = data;
             if (!behaviors || !behaviors.length){
-                displayEmpty();
+                return
             }
             else{
                 showBehavior(behaviors);
@@ -66,10 +66,5 @@
             newRow.append(teacherName);
             tableBody.append(newRow);
         }
-    }
-
-    function displayEmpty(){
-        var emptyContent = $('<div class="card horizontal"><div class="card-stacked"><div class="card-content"><p>No Record exist</p></div></div>');
-        tableBody.append(emptyContent);
     }
 </script>

@@ -21,8 +21,8 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                        <i class="material-icons prefix">textsms</i>
-                        <input type="text" id="autocomplete-input" class="autocomplete">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" id= "st-name" class="validate">
                         <label for="autocomplete-input">Enter Student</label>
                         </div>
                     </div>
@@ -81,18 +81,6 @@ Severity (1-10):___ --}}
 
 <script type="text/javascript">
     $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-        // Populate all student data here, so auto complete works
-        data: {
-            "Ronak": null,
-            "Kunle": null,
-            "Sean": 'https://placehold.it/250x250',
-            "Michael": null,
-            "Yesania": null
-        },
-        });
-    });
-    $(document).ready(function(){
         $('.datepicker').datepicker();
     });
 
@@ -100,7 +88,7 @@ Severity (1-10):___ --}}
         $('.timepicker').timepicker();
     });
 
-    var studentName = $("#autocomplete-input");
+    var studentName = $("#st-name");
     var datePicker = $(".datepicker");
     var timePicker = $(".timepicker");
     var situationVal = $("#situation");
