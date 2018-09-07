@@ -59,7 +59,7 @@ module.exports = app => {
 		});
 	});
 
-	app.post("/takeAttendance", function(request, response){
+	app.post("api/takeAttendance", function(request, response){
 		attendanceORM.insertAttendance(
 			request.body.id, 
 			request.body.studentID, 
@@ -67,6 +67,16 @@ module.exports = app => {
 			request.body.attendanceValue, 
 			request.body.date,
 			function (result){
+				console.log(result);
+			}
+		);
+	});
+
+	app.put("/api/takeAttendance", function(request, response) {
+		attendanceORM.updateAttendance(
+			request.body.attendanceValue,
+			request.body.id,
+			function(result) {
 				console.log(result);
 			}
 		);

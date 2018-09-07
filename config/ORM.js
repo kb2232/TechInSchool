@@ -42,7 +42,14 @@ var attendanceORM = {
       if (error) throw error;
       sendResult(response);
     });
-  } 
+  },
+  updateAttendance: function(attendanceValue, attendanceID, sendResult) {
+    var query = "UPDATE attendance SET attendanceValue = ? WHERE id = ?";
+    connection.query(query, [attendanceValue, attendanceID], function(error, response){
+      if (error) throw error;
+      sendResult(response);
+    });
+  }
 };
 
 module.exports = attendanceORM;
