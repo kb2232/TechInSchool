@@ -171,3 +171,7 @@ SELECT * FROM takesClass;
 SELECT * FROM users;
 
 --export PATH=${PATH}:/usr/local/mysql/bin/;
+
+
+
+ALTER TABLE `Behaviors` ADD COLUMN studentName VARCHAR(15) NOT NULL;
