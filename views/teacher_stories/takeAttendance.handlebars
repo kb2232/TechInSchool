@@ -102,6 +102,28 @@
 
   <script>
     $(document).ready(function () {
+      var attendanceRecords = {{json attendance}};
+      var date = formatDate(new Date());
+      for (var i = 0; i < attendanceRecords.length; i++){
+        var todaysDate = [date.substring(0, 4), date.substring(5, 7), date.substring(8, 10)];
+        var attendanceDate = [attendanceRecords[i].date.substring(0, 4), attendanceRecords[i].date.substring(5, 7), attendanceRecords[i].date.substring(8, 10)];
+        var datesEqual = true;
+        for (var j = 0; j < 3; j++){
+          if (todaysDate[j] != attendanceDate[j]){
+            datesEqual = false;
+          }
+        }
+        if (datesEqual){
+          $("#status" + attendanceRecords[i].studentID).text(attendanceRecords[i].attendancevalue);
+          var status = attendanceRecords[i].attendancevalue.charAt(0);
+          $("#status" + attendanceRecords[i].studentID).removeClass("markAttendanceP");
+          $("#status" + attendanceRecords[i].studentID).removeClass("markAttendanceL");
+          $("#status" + attendanceRecords[i].studentID).removeClass("markAttendanceE");
+          $("#status" + attendanceRecords[i].studentID).removeClass("markAttendanceA");
+          $("#status" + attendanceRecords[i].studentID).addClass("markAttendance" + status);
+        }
+      }
+
       $(".card").on("click", function () {
         var ID = $(this).attr("data-id");
         $('#modal' + ID).modal();
@@ -171,7 +193,6 @@
       $("#submitAttendance").on("click", function(event){
         event.preventDefault();
 
-        console.log({{json students}});
         var studentList = {{json students}};
         for (var i = 0; i < studentList.length; i ++){
           var todaysDate = formatDateForID(new Date());
@@ -185,11 +206,29 @@
             date: formatDate(new Date())
           };
 
-          // Send the POST request.
-          $.ajax("/takeAttendance", {
-              type: "POST",
+          var exists = false;
+          for (var j = 0; j < attendanceRecords.length; j++){
+            if (attendanceRecord.id == attendanceRecords[j].id){
+              console.log(attendanceRecord.id);
+              exists = true;
+              break;
+            }
+          }
+
+          if (!exists){
+            // Send the POST request.
+            $.ajax("api/takeAttendance", {
+                type: "POST",
+                data: attendanceRecord
+            });
+          }
+          else {
+            // PUT
+            $.ajax("/api/takeAttendance", {
+              type: "PUT",
               data: attendanceRecord
-          });
+            });
+          }
 
           setTimeout(function(){
             window.location.href = window.location.origin + "/attendance";
@@ -200,7 +239,13 @@
 
     function formatDate(date) {
       var day = date.getDate();
-      var month = date.getMonth();
+      if (day < 10 && day.length != 2){
+        day = "0" + day;
+      }
+      var month = date.getMonth() + 1;
+      if (month < 10 && month.length != 2){
+        month = "0" + month;
+      }
       var year = date.getFullYear();
 
       return year + "-" + month + "-" + day;
@@ -208,7 +253,13 @@
 
     function formatDateForID(date) {
       var day = date.getDate();
-      var month = date.getMonth();
+      if (day < 10 && day.length != 2){
+        day = "0" + day;
+      }
+      var month = date.getMonth() + 1;
+      if (month < 10 && month.length != 2){
+        month = "0" + month;
+      }
       var year = date.getFullYear();
 
       return year + "" + month + "" + day;
