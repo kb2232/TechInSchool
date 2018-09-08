@@ -19,7 +19,8 @@ if (process.env.JAWSDB_URL) {
 
 		// table names and queries
 		const table1 = 'schools',
-			table2 = 'users', table3='agenda';
+			table2 = 'users', table3='agenda', table4='students', table5='teachers', table6='class',
+			table7='attendance', table8='takesClass';
 
 		//drop tables just incase they exist already - comment out drop table lines if you get error in heroku
 		con.query(`DROP TABLE ${table1}`, (err, result) => {
@@ -35,6 +36,13 @@ if (process.env.JAWSDB_URL) {
 				return;
 			}
 			console.log('-----Table2 deleted!!!-----');
+		});
+		con.query(`DROP TABLE ${table3}`, (err, result) => {
+			if (err) { 
+				console.log("cannot drop table"); 
+				return;
+			}
+			console.log('-----Table3 deleted!!!-----');
 		});
 
 		// create table queries
@@ -60,6 +68,46 @@ if (process.env.JAWSDB_URL) {
 			user VARCHAR(50) NOT NULL,
 			FOREIGN KEY(user) REFERENCES users(user_id)
 		)`
+		const sqt4=`CREATE TABLE ${table4} (
+			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+				firstname VARCHAR(20) NOT NULL,
+				lastname VARCHAR(20) NOT NULL,
+				linktophoto VARCHAR(255),
+				phonenumber VARCHAR(10),
+				address VARCHAR(50),
+				birthday DATE
+		)`
+		const sqt5 = `CREATE TABLE ${table5} (
+			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+			firstname VARCHAR(20) NOT NULL,
+			lastname VARCHAR(20) NOT NULL,
+			address VARCHAR(50),
+			birthday DATE,
+			linktophoto VARCHAR(255),
+			phonenumber VARCHAR(10)
+	)`
+	const sqt6 = `CREATE TABLE ${table6} (
+		id INT NOT NULL PRIMARY KEY,
+			teacherID INT,
+			subject VARCHAR(30),
+			classname VARCHAR(40) NOT NULL,
+			timePeriod TIME NOT NULL,
+			day INT,
+			FOREIGN KEY (teacherID) REFERENCES teachers(id)
+	)`
+	const sqt7 = `CREATE TABLE ${table7} (
+    id VARCHAR(20) NOT NULL PRIMARY KEY,
+    studentID INT,
+    classID INT,
+    attendancevalue ENUM("LATE", "ABSENT", "PRESENT", "EXCUSED"),
+    date DATE
+	)`
+	const sqt8 = `CREATE TABLE ${table8} (
+    classID INT,
+    studentID INT,
+    FOREIGN KEY (classID) REFERENCES class(id),
+    FOREIGN KEY (studentID) REFERENCES students(id)
+)`
 		// create tables
 		con.query(sqlT1, (err, result) => {
 			if (err) throw err;
@@ -72,6 +120,26 @@ if (process.env.JAWSDB_URL) {
 		con.query(sqt3, (err, result) => {
 			if (err) throw err;
 			console.log('-----Table3 Created!!!-----');
+		});
+		con.query(sqt4, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table4 Created!!!-----');
+		});
+		con.query(sqt5, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table5 Created!!!-----');
+		});
+		con.query(sqt6, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table6 Created!!!-----');
+		});
+		con.query(sqt7, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table7 Created!!!-----');
+		});
+		con.query(sqt8, (err, result) => {
+			if (err) throw err;
+			console.log('-----Table8 Created!!!-----');
 		});
 		//show tables
 		con.query('SHOW TABLES', (err, result) => {
@@ -122,6 +190,88 @@ if (process.env.JAWSDB_URL) {
 				throw err;
 			} else console.log('\nNumber of records inserted:' + result.affectedRows);
 		});
+		//inserting values to table 4 and queries
+		var sqlV4 = `INSERT INTO ${table4} (firstname, lastname, linktophoto, phonenumber, address, birthday) VALUES?`;
+		var values4 = [
+			["Jeff", "Cash", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2011234522", "123 New St.", "2002-06-21"],
+			["Nicole", "Jeffreys", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2014612532", "588 Main St.", "2002-06-21"],
+			["John", "Jordan", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2016946999", "522 Apple Pl.", "2003-05-22"],
+			["Rebecca", "Cunningham", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2015321353", "483 Main St.", "2003-06-22"],
+			["Brian", "Smith", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "2018968412", "136 Market Ct.", "2002-11-21"]
+		];
+		con.query(sqlV4, [values4], (err, result) => {
+			if (err) {
+				throw err;
+			} else console.log('\nNumber of records inserted:' + result.affectedRows);
+		});
+		//inserting values to table 5 and queries
+		var sqlV5 = `INSERT INTO ${table5} (firstname, lastname, address, birthday, linktophoto, phonenumber) VALUES?`;
+		var values5 = [
+			["Robert", "Tree", "435 Magnolia Ave.", '1991-12-1', "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "5413155672"],
+			["Chris", "Wotkins", "119 Howards St.", "1985-04-10", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6531567894"],
+			["Tony", "Li", "312 Carpenter Pl.", "1986-07-28", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "1468971263"],
+			["Samantha", "Gray", "3 14th St.", "1794-03-01", "http://www.mojosolitservices.com/wp-content/uploads/avatar-1-300x300.png", "6544314893"],
+		];
+		con.query(sqlV5, [values5], (err, result) => {
+			if (err) {
+				throw err;
+			} else console.log('\nNumber of records inserted:' + result.affectedRows);
+		});
+		//inserting values to table 6.
+		var sqv6 = `INSERT INTO ${table6} (id, teacherID, subject, classname, timePeriod, day) VALUES?`;
+		var values6 = [
+			[1, 1, "Science", "Biology", "10:40:00", 4],
+			[2, 3, "Math", "Algebra", "12:20:00", 3],
+			[3, 2, "English", "AP Literature", "13:10:00", 5],
+			[4, 1, "Science", "Biology Honors", "08:15:00", 1],
+			[5, 1, "Science", "Biology", "10:40:00", 2],
+			[6, 1, "Science", "Physics", "13:50:00", 3],
+			[7, 1, "Science", "Chemistry", "12:00:00", 4],
+			[8, 1, "Science", "AP Physics", "11:30:00", 5],
+		]
+		con.query(sqv6, [values6], (err, result) => {
+			if (err) {
+				throw err;
+			} else console.log('\nNumber of records inserted:' + result.affectedRows);
+		});
+				//inserting values to table 7 and queries
+				var sqlV7 = `INSERT INTO ${table7} (id, studentID, classID, attendanceValue, date) VALUES?`;
+				var values7 = [
+					["0830201821", 2, 1, "PRESENT", '2018-08-30'],
+					["0830201831", 3, 1, "PRESENT", '2018-08-30'],
+					["0830201844", 4, 4, "PRESENT", '2018-08-30'],
+					["0830201825", 2, 5, "PRESENT", '2018-08-30'],
+					["0830201816", 1, 6, "PRESENT", '2018-08-30'],
+					["0830201837", 3, 7, "PRESENT", '2018-08-30'],
+					["0830201858", 5, 8, "PRESENT", '2018-08-30'],
+				];
+				con.query(sqlV7, [values7], (err, result) => {
+					if (err) {
+						throw err;
+					} else console.log('\nNumber of records inserted:' + result.affectedRows);
+				});
+				//inserting values to table 8.
+				var sqv8 = `INSERT INTO ${table8} (classID, studentID) VALUES?`;
+				var values8 = [
+					[1,2],
+					[1,3],
+					[2,5],
+					[2,4],
+					[2,3],
+					[2,1],
+					[3,2],
+					[4,4],
+					[5,2],
+					[6,1],
+					[7,3],
+					[8,5],
+				]
+				con.query(sqv8, [values8], (err, result) => {
+					if (err) {
+						throw err;
+					} else console.log('\nNumber of records inserted:' + result.affectedRows);
+				});
+
 	});
 	module.exports = con;
 } else 

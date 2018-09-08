@@ -8,6 +8,12 @@ main {
   flex: 1 0 auto;
 }
 
+#imageEd {
+  position: relative;
+  bottom: 300px;
+
+}
+
 .border {
   border: 1px solid black;
   border-style: dashed;
@@ -36,10 +42,21 @@ main {
   width: 20%;
 }
 
-h4 {
-  font-size: 18px;
+h4.thick {
+  font-size: 10px;
+  font-weight: bold;
+  color: darkblue;
   letter-spacing: 0.1em;
-  padding: 10px;
+  padding: 8px;
+}
+h5 {
+  font-style: italic;
+  font-style: bold;
+}
+h6.thick {
+  font-size: 10px;
+  font-weight: bold;
+  color: black;
 }
 
 input {
@@ -65,103 +82,6 @@ textarea {
   width: 80%;
 }
 
-/* .done {
-  background-color: #90EE90;
-}
-
-.not-done {
-  background-color: #FFB3B3;
-} */
-
-/* Take Attendance Page */
-
-  /* Take Attendance Modal */
-  #studentImageCircle {
-    float: left;
-    max-height: 300px;
-    max-width: 300px;
-    padding: 30px;
-  }
-
-  #studentName {
-    font-size: 2em;
-  }
-
-  #studentID {
-    font-size: 2em;
-  }
-
-  .details {
-    clear: both;
-    font-size: 1.5em;
-  }
-
-  /* Attendance Record Modal */
-  .box {
-    border: 1px solid black;
-    margin: 0 auto;
-    width: 30px;
-    height: 30px;
-  }
-
-  /* Take Attendance Dropdown Menu */
-  .attendanceValue {
-    justify-content: center;
-  }
-
-#studentList {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 20px;
-}
-
-#classTitle {
-  text-align: center;
-}
-
-.studentImage {
-  float:left;
-  max-height: 300px;
-  padding: 20px;
-}
-
-.markAttendanceP {
-  background-color: #90EE90;
-  border: 1px;
-  color: black;
-  height: 50px;
-  width: 100%;
-}
-
-.markAttendanceL {
-  background-color: #FFD700;
-  border: 1px;
-  color: black;
-  height: 50px;
-  width: 100%;
-}
-
-.markAttendanceE {
-  background-color: #87CEEB;
-  border: 1px;
-  color: black;
-  height: 50px;
-  width: 100%;
-}
-
-.markAttendanceA {
-  background-color: #FFB3B3;
-  border: 1px;
-  color: black;
-  height: 50px;
-  width: 100%;
-}
-
-#submitAttendance {
-  display: block;
-  margin: 20px auto;
-}
-
 /* styles css */
 /* Custom Stylesheet */
 /**
@@ -176,15 +96,16 @@ textarea {
 }
  nav ul a,
  nav .brand-logo {
-   color: white;
+   color:yellow;
  }
  
  p {
-   line-height: 2rem;
+   line-height: 2.5rem;
+   color:white;
  }
  
  .sidenav-trigger {
-   color: #26a69a;
+   color: yellow;
  }
  
  .parallax-container {
@@ -202,25 +123,105 @@ textarea {
      position: absolute;
      top: 40%;
    }
-   #index-banner .section {
-     top: 10%;
-   }
- }
- 
- @media only screen and (max-width : 600px) {
-   #index-banner .section {
-     top: 0;
-   }
- }
- 
- .icon-block {
-   padding: 0 15px;
- }
- .icon-block .material-icons {
-   font-size: inherit;
- }
- 
- footer.page-footer {
-   margin: 0;
- }
- 
+   #imageEd {
+    width: 100%;
+    clear: both;
+  }
+  
+  #imageLearn {
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageRead {
+   width: 100%;
+   clear: both;
+  }
+  a {
+   color: red;
+   font-style: bold;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+  #imageEd {
+   position: relative;
+   top: 100px;
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageLearn {
+  width: 100%;
+  clear: both;
+  }
+  
+  #imageRead {
+  width: 100%;
+  clear: both;
+  }
+  a {
+  color: red;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+  border: solid;
+  height: 450px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+  color: yellow;
+}
+
+#imageEd {
+ width: 100%;
+ clear: both;
+}
+
+#imageLearn {
+width: 100%;
+clear: both;
+}
+
+#imageRead {
+width: 100%;
+clear: both;
+}
+a {
+color: red;
+}
+@media only screen and (min-width : 992px) {
+  #index-banner .section {
+    top: 0;
+  }
+  #imageEd {
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageLearn {
+  width: 100%;
+  clear: both;
+  }
+  
+  #imageRead {
+  width: 100%;
+  clear: both;
+  }
+  a {
+  color: red;
+  }
+}
