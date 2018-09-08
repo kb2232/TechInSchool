@@ -10,7 +10,8 @@
 
 <body>
   <div>
-    <h2><span class="fa fa-sign-in"></span>New User</h2>
+    {{!-- <h2><span class="fa fa-sign-in"></span>New User</h2> --}}
+    <h2 class="left strong">New User</h2>
     <h6 class="left strong">Teachers enter your registered Email address sent to you by your school. 
       If you do not have a registered email address please click <a href="/contact">here.</a></h6>
     
@@ -20,7 +21,7 @@
     <mark>{{errors}}</mark>
     <form action="/processingemail" method="POST">
       <div class="form-group">
-        <label>Email</label>
+        {{!-- <label>Email</label> --}}
         <input type="email" class="form-control" name="email" value="{{email}}" placeholder="Enter your email" required>
       </div>
       <button type="submit" class="btn btn-warning blue darken-3">Sign Up</button>
