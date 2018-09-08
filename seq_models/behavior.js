@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
       len: [1],
       allowNull: false,
     },
+    studentName : {
+      type: DataTypes.STRING,
+      len: [1],
+    },
     severity: {
         type: DataTypes.INTEGER,
         len: [1]
