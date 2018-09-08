@@ -1,3 +1,4 @@
+
 body {
   display: flex;
   min-height: 100vh;
@@ -6,6 +7,12 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+#imageEd {
+  position: relative;
+  bottom: 300px;
+
 }
 
 .border {
@@ -36,10 +43,21 @@ main {
   width: 20%;
 }
 
-h4 {
-  font-size: 18px;
+h4.thick {
+  font-size: 10px;
+  font-weight: bold;
+  color: darkblue;
   letter-spacing: 0.1em;
-  padding: 10px;
+  padding: 8px;
+}
+h5 {
+  font-style: italic;
+  font-style: bold;
+}
+h6.thick {
+  font-size: 10px;
+  font-weight: bold;
+  color: black;
 }
 
 input {
@@ -79,15 +97,16 @@ textarea {
 }
  nav ul a,
  nav .brand-logo {
-   color: white;
+   color:yellow;
  }
  
  p {
-   line-height: 2rem;
+   line-height: 2.5rem;
+   color:white;
  }
  
  .sidenav-trigger {
-   color: #26a69a;
+   color: yellow;
  }
  
  .parallax-container {
@@ -105,25 +124,105 @@ textarea {
      position: absolute;
      top: 40%;
    }
-   #index-banner .section {
-     top: 10%;
-   }
- }
- 
- @media only screen and (max-width : 600px) {
-   #index-banner .section {
-     top: 0;
-   }
- }
- 
- .icon-block {
-   padding: 0 15px;
- }
- .icon-block .material-icons {
-   font-size: inherit;
- }
- 
- footer.page-footer {
-   margin: 0;
- }
- 
+   #imageEd {
+    width: 100%;
+    clear: both;
+  }
+  
+  #imageLearn {
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageRead {
+   width: 100%;
+   clear: both;
+  }
+  a {
+   color: red;
+   font-style: bold;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+  #imageEd {
+   position: relative;
+   top: 100px;
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageLearn {
+  width: 100%;
+  clear: both;
+  }
+  
+  #imageRead {
+  width: 100%;
+  clear: both;
+  }
+  a {
+  color: red;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+  border: solid;
+  height: 450px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+  color: yellow;
+}
+
+#imageEd {
+ width: 100%;
+ clear: both;
+}
+
+#imageLearn {
+width: 100%;
+clear: both;
+}
+
+#imageRead {
+width: 100%;
+clear: both;
+}
+a {
+color: red;
+}
+@media only screen and (min-width : 992px) {
+  #index-banner .section {
+    top: 0;
+  }
+  #imageEd {
+   width: 100%;
+   clear: both;
+  }
+  
+  #imageLearn {
+  width: 100%;
+  clear: both;
+  }
+  
+  #imageRead {
+  width: 100%;
+  clear: both;
+  }
+  a {
+  color: red;
+  }
+}
