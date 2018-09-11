@@ -37,17 +37,17 @@
   </div>
   <div class="container">
     {{#each data}}
-    <form action="/deleterecord/{{{this.id}}}" method="delete">
+    <form action="/deleterecord/{{this.id}}" method="delete">
     <div class="row center">
       <div class="col 10">
-        <div class="card">
+        <div class="card blue">
           <div class="card-content">
             <span class="card-title">{{this.title}}</span>
-            <p>{{{this.agendaMessage}}}</p>
+            <p class="black">{{{this.agendaMessage}}}</p>
             <div class="card-action">
               {{this.createdAt}}
               <button type="submit" class="btn red"><i class="fa fa-remove"></i>Delete</button>
-              <a type="submit" class="btn blue" href="/editinfo/{{{this.id}}}"><i class="fa fa-edit"></i>Edit</a>
+              <a type="submit" class="btn blue" href="/editinfo/{{this.id}}"><i class="fa fa-edit"></i>Edit</a>
             </div>
           </div>
         </div>

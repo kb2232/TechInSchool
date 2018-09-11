@@ -1,3 +1,14 @@
+/* @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */
+.sidenav {
+  background: url(../image/tis.jpg);
+  background-size: cover;
+  height: 50%;
+}
+
+
 body {
   display: flex;
   min-height: 100vh;

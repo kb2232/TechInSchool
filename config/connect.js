@@ -15,6 +15,7 @@ if (process.env.JAWSDB_URL) {
 				console.log("cannot use database"); 
 				return;
 			}
+			console.log(result);
 		});
 
 		// table names and queries
@@ -22,28 +23,65 @@ if (process.env.JAWSDB_URL) {
 			table2 = 'users', table3='agenda', table4='students', table5='teachers', table6='class',
 			table7='attendance', table8='takesClass';
 
-		//drop tables just incase they exist already - comment out drop table lines if you get error in heroku
-		con.query(`DROP TABLE ${table1}`, (err, result) => {
-			if (err) { 
-				console.log("cannot drop table"); 
-				return;
-			}
-			console.log('-----Table1 deleted!!!-----');
-		});
-		con.query(`DROP TABLE ${table2}`, (err, result) => {
-			if (err) { 
-				console.log("cannot drop table"); 
-				return;
-			}
-			console.log('-----Table2 deleted!!!-----');
-		});
-		con.query(`DROP TABLE ${table3}`, (err, result) => {
-			if (err) { 
-				console.log("cannot drop table"); 
-				return;
-			}
-			console.log('-----Table3 deleted!!!-----');
-		});
+		//drop tables just incase they exist already - comment out drop table lines if you get error in heroku;
+
+		// con.query(`DROP TABLE ${table1}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table 1"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table1 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table2}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table 2"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table2 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table3}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table3"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table3 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table4}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table4"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table4 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table5}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table 5"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table5 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table6}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table6"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table6 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table7}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table 7"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table7 deleted!!!-----');
+		// });
+		// con.query(`DROP TABLE ${table8}`, (err, result) => {
+		// 	if (err) { 
+		// 		console.log("cannot drop table8"); 
+		// 		return;
+		// 	}
+		// 	console.log('-----Table8 deleted!!!-----');
+		// });
+
 
 		// create table queries
 		const sqlT1 = `CREATE TABLE ${table1} (
@@ -51,22 +89,22 @@ if (process.env.JAWSDB_URL) {
 			school_name VARCHAR(150) NOT NULL UNIQUE
 		)`
 		const sqlT2 = `CREATE TABLE ${table2} (
-		id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-		user_id VARCHAR(50) UNIQUE,
-		firstname VARCHAR(50) NOT NULL,
-		lastname VARCHAR(50) NOT NULL,
-		email VARCHAR(50) NOT NULL,
-		password VARCHAR(150),
-		school_code VARCHAR(50) NOT NULL,
-		FOREIGN KEY(school_code) REFERENCES schools(code)
+			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+			user_id VARCHAR(50) UNIQUE,
+			firstname VARCHAR(50) NOT NULL,
+			lastname VARCHAR(50) NOT NULL,
+			email VARCHAR(50) NOT NULL,
+			password VARCHAR(150),
+			school_code VARCHAR(50) NOT NULL,
+			FOREIGN KEY(school_code) REFERENCES schools(code)
 		)`
 		const sqt3 = `CREATE TABLE ${table3} (
 			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 			title VARCHAR(50) NOT NULL,
-			createdAt TIMESTAMP DEFAULT NOW(),
+			createdAt DATETIME DEFAULT NOW(),
 			agendaMessage LONGTEXT NOT NULL,
-			user VARCHAR(50) NOT NULL,
-			FOREIGN KEY(user) REFERENCES users(user_id)
+			user INTEGER NOT NULL,
+			FOREIGN KEY(user) REFERENCES users(id)
 		)`
 		const sqt4=`CREATE TABLE ${table4} (
 			id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

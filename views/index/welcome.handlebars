@@ -5,60 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
 </head>
 
 <body>
   {{#if user}}
-<div class="card">
+  <div class="card ">
     <h3 class="center">Welcome: {{user.firstname}}</h3>
     <div class="card-action">
-      <h5 class="center">Below are your teacher's tools!!</h5>
+      <h5 class="center">Below are your Teacher tools!</h5>
     </div>
   </div>
   <div class="container center">
     <div class="row">
       <div class="col s6">
         <h4>Take Attendance</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" href="/attendance"><i class="material-icons">+</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light blue darken-3
+        " href="/attendance"><i class="material-icons">check</i></a>
       </div>
       <div class="col s6">
-        <h4>Behavior Record</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" href="/behavior"><i class="material-icons">+</i></a>
+        <h4>Behavior</h4>
+        <a class="btn-floating btn-large waves-effect waves-light blue darken-3" href="/behavior"><i class="material-icons">assessment</i></a>
       </div>
     </div>
     <div class="row">
       <div class="col s6">
         <h4>Agenda</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" id="agenda" href="/writeagenda"><i class="material-icons">+</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light blue darken-3" id="agenda" href="/writeagenda"><i class="material-icons">view_agenda</i></a>
       </div>
-      <div class="col s6">
-        <h4>Stats</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" href="/"><i class="material-icons">+</i></a>
-      </div>
-    </div>
-    <div class="row">
-
       <div class="col s6">
         <h4>Grades</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" href="/"><i class="material-icons">+</i></a>
-      </div>
-      <div class="col s6">
-        <h4>My Schedule</h4>
-        <a class="btn-floating btn-large waves-effect waves-light red" href="/"><i class="material-icons">+</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light blue darken-3" href="/"><i class="material-icons">grade</i></a>
       </div>
     </div>
+    
   </div>
+  
+  <br>
   {{else}}
-  <h1 class="header center blue-text text-darken-3  ">Technology In Schools</h1>
+        <h1 class="header center blue-text text-darken-3  ">Technology In Schools</h1>
   <div id="index-banner" class="parallax-container pad">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-
+        
         <div class="row center">
           <h5 class="header col s12 light"></h5>
         </div>
@@ -66,9 +58,9 @@
       </div>
     </div>
   </div>
-  <div class="row center">
-    <a href="/signup" id="download-button" class="btn-large waves-effect waves-light blue darken-3">Get Started</a>
-  </div>
+        <div class="row center">
+          <a href="/signup" id="download-button" class="btn-large waves-effect waves-light blue darken-3">Get Started</a>
+        </div>
 
 
   <div class="container">
@@ -118,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img id="imageLearn" src="image/learn.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img id="imageLearn" src="image/ed.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
@@ -127,9 +119,8 @@
       <div class="row">
         <div class="col s12 center">
           <h3><i class="center black-text"></i></h3>
-          <h4>A modern respones to improving technology. We cater to teachers and parents. We believe that by making their
-            respective lifes better, they will in turn make their respective students life better. <a href="/contact">CONTACT
-              US</a></h4>
+          <h4>A modern respones to improving technology. We cater to teachers and parents. We
+            believe that by making their respective lifes better, they will in turn make their respective students life better. <a href="/contact">CONTACT US</a></h4>
           <p class="left-align light"></p>
         </div>
       </div>
@@ -146,7 +137,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img id="imageRead" src="image/read.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img id="imageRead" src="image/stude.jpg" alt="Unsplashed background img 3"></div>
   </div>
   {{/if}}
 </body>
