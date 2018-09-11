@@ -217,22 +217,24 @@
 
           if (!exists){
             // Send the POST request.
-            $.ajax("api/takeAttendance", {
+            console.log("post");
+            $.ajax("/api/takeAttendance", {
                 type: "POST",
                 data: attendanceRecord
             });
           }
           else {
             // PUT
+            console.log("update");
             $.ajax("/api/takeAttendance", {
               type: "PUT",
               data: attendanceRecord
             });
           }
 
-          setTimeout(function(){
+          {{!-- setTimeout(function(){
             window.location.href = window.location.origin + "/attendance";
-          }, 2000);
+          }, 2000); --}}
         }
       });
     });
