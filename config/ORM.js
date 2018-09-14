@@ -16,7 +16,7 @@ var attendanceORM = {
     });
   },
   getAttendance: function(attendanceTable, classIDColumn, classID, sendResult) {
-    var query = "SELECT * FROM ?? WHERE ?? = ?";
+    var query = "SELECT * FROM ?? WHERE ?? = ? ORDER BY date";
     connection.query(query, [attendanceTable, classIDColumn, classID], function(error, response){
       if (error) throw error;
       sendResult(response);

@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <a href="/">back to classes</a>
+    <a href="/attendance">back to classes</a>
     {{!-- Title where Class Name and Time will be displayed. --}}
     <h5 id="classTitle"> 
       {{#each class}}
@@ -180,7 +180,7 @@
             $("#recordTable" + currentID).append(
               "<tr>" +
                 "<td>" +
-                  attendanceRecords[i].date +
+                  attendanceRecords[i].date.substring(0, 10) +
                 "</td>" +
                 "<td>" +
                   recordValue +
@@ -217,7 +217,7 @@
 
           if (!exists){
             // Send the POST request.
-            $.ajax("api/takeAttendance", {
+            $.ajax("/api/takeAttendance", {
                 type: "POST",
                 data: attendanceRecord
             });

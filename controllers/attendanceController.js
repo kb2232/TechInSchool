@@ -59,7 +59,7 @@ module.exports = app => {
 		});
 	});
 
-	app.post("api/takeAttendance", function(request, response){
+	app.post("/api/takeAttendance", function(request, response){
 		attendanceORM.insertAttendance(
 			request.body.id, 
 			request.body.studentID, 
